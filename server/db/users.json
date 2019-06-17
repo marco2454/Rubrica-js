@@ -1,0 +1,111 @@
+[
+    {
+        "id": 1,
+        "name": "Daniel",
+        "surname": "Zotti",
+        "bio": "Questo è un test della biografia!\nChissà se va a capo!\n\nSi, va a capo :)",
+        "picture": "http://www.danielzotti.it/assets/videoprofile/videoprofile.gif",
+        "contacts": [
+            {
+                "label": "email",
+                "value": "admin@danielzotti.it",
+                "url": "mailto:admin@danielzotti.it"
+            },
+            {
+                "label": "tel",
+                "value": "3491234567",
+                "url": "tel:3491234567"
+            },
+            {
+                "label": "website",
+                "value": "danielzotti.it",
+                "url": "http://danielzotti.it"
+            }
+        ],
+        "hobbies": [
+            {
+                "icon": "futbol",
+                "value": "Giocare a calcio"
+            },
+            {
+                "icon": "book-open",
+                "value": "Leggere"
+            },
+            {
+                "icon": "file-code",
+                "value": "Programmare"
+            },
+            {
+                "icon": "",
+                "value": "Basket"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Daniel",
+        "surname": "Test",
+        "bio": "",
+        "picture": "http://www.danielzotti.it/assets/videoprofile/videoprofile.gif",
+        "contacts": [],
+        "hobbies": []
+    },
+    {
+        "id": 5,
+        "name": "Mario",
+        "surname": "Rossi",
+        "bio": "Nuova biografia",
+        "contacts": [
+            {
+                "label": "tel",
+                "value": "3491234567",
+                "url": "tel:3491234567"
+            },
+            {
+                "label": "website",
+                "value": "danielzotti.it",
+                "url": "http://danielzotti.it"
+            },
+            {
+                "label": "googl",
+                "value": "google.com",
+                "url": "http://google.com"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Luigi",
+        "surname": "Bianchi"
+    },
+    {
+        "id": 7,
+        "name": "Emoji",
+        "surname": "😋"
+    },
+    {
+        "id": 8,
+        "name": "Nome",
+        "surname": "Cognome"
+    },
+    {
+        "id": 9,
+        "name": "Marco",
+        "surname": "Rossi",
+        "bio": "Biografia",
+        "picture": "https://www.mastergestionerisorseumane.com/images/team-4.jpg",
+        "contacts": [
+            {
+                "label": "CASA",
+                "value": "040 123567",
+                "url": ""
+            }
+        ],
+        "hobbies": [
+            {
+                "icon": "futbol",
+                "value": "tennis"
+            }
+        ]
+    }
+]

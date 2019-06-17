@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Server</title>
+</head>
+
+<body>
+    <h1>Come utilizzare le Web API</h1>
+    <p>
+        Il server rimane in ascolto su <code>http://localhost:3000</code> (<code>http://localhost:3000/api/users</code> per le api)
+    </p>
+    <p>
+        Il database contiene un array di utenti di questo tipo:
+        <pre>[
+    { id: 1, name: 'Daniel', surname: 'Zotti' },
+    { id: 2, name: 'Mario', surname: 'Rossi' }
+]</pre>
+    </p>
+    <p>In realtà il database funziona con un array di oggetti di qualsiasi tipo e struttura, l'importante è che abbiano il campo "id"</p>
+    <p>Aprire la developer console (F12) sul tab Network (o rete) per vedere le chiamate AJAX</p>
+
+    <div>
+        <h2>Recupera tutti gli utenti</h2>
+        <button onclick="return getAndDisplayUsers()">Dammeli subito!</button>
+        <ul id="get-users"></ul>
+    </div>
+    <div>
+        <h2>Recupera un utente tramite il suo ID</h2>
+        <form onsubmit="return getUserById(this,event)">
+            <input placeholder="id" name="id" value="1">
+            <button>Voglio l'utente con questo ID!</button>
+        </form>
+        <div id="get-user-by-id"></div>
+    </div>
+    <div>
+        <h2>Crea un nuovo utente</h2>
+        <form onsubmit="return createUser(this,event)">
+            <input placeholder="nome" name="name" value="Nuovo">
+            <input placeholder="cognome" name="surname" value="Utente">
+            <button>Portalo in vita!</button>
+        </form>
+        <div id="create-user"></div>
+    </div>
+    <div>
+        <h2>Modifica un utente</h2>
+        <form onsubmit="return updateUser(this,event)">
+            <input placeholder="id" name="id" value="1">
+            <input placeholder="nome" name="name" value="Nuovo nome">
+            <input placeholder="cognome" name="surname" value="Nuovo cognome">
+            <button>Cambialo con i dati che ti dico io!</button>
+        </form>
+        <div id="update-user"></div>
+    </div>
+    <div>
+        <h2>Elimina un utente specificano il suo ID</h2>
+        <form onsubmit="return deleteUser(this,event)">
+            <input placeholder="id" name="id" value="1">
+            <button>Distruggilo!</button>
+        </form>
+        <div id="delete-user"></div>
+    </div>
+    <div>
+        <h2>Cerca un utente per chiave (es: name o surname)</h2>
+        <form onsubmit="return search(this,event)">
+            <input placeholder="chiave" name="key" value="name">
+            <input placeholder="valore" name="value" value="dani">
+            <button>Trova!</button>
+        </form>
+        <div id="search-results"></div>
+    </div>
+
+    <script>
+        const serverApiBaseUrl = 'http://localhost:3000/api/users';
+
+
+        // GET ALL USERS
+        function getAndDisplayUsers() {
+            const getUsersApiUrl = serverApiBaseUrl;
+            const getUsersElement = document.querySelector('#get-users');
+            getUsersElement.innerHTML = '<li><em>loading users...</em></li>';
+
+            fetch(getUsersApiUrl)
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw Error(response.statusText);
+                    }
+                    return response.json();
+                })
+                .catch(manageHttpErrorResponse)
+                .then(function (users) {
+                    if (!users || users.length === 0) {
+                        getUsersElement.innerHTML = '<em>no users</em>';
+                        return;
+                    }
+                    getUsersElement.innerHTML = '';
+                    users.forEach(function (user) {
+                        getUsersElement.innerHTML += `<li>${user.id} - ${user.name} ${user.surname}</li>`;
+                    });
+                });
+        }
+
+        // GET USER BY ID
+        function getUserById(form,event) {
+            event.preventDefault();
+            
+            const getUserByIdApiUrl = serverApiBaseUrl;
+            const getUserByIdElement = document.querySelector('#get-user-by-id');
+            getUserByIdElement.innerHTML = '<em>loading user by id...</em>';
+            let userId = form.querySelector('[name=id]').value;
+
+            fetch(`${getUserByIdApiUrl}/${userId}`,{
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw Error(response.statusText);
+                    }
+                    return response.json();
+                })
+                .catch(manageHttpErrorResponse)
+                .then(function (user) {
+                    if (!user) {
+                        getUserByIdElement.innerHTML = '<em>l\'utente non esiste</em>';
+                        return;
+                    }
+                    getUserByIdElement.innerHTML = `<strong>${user.id} - ${user.name} ${user.surname}</strong>`;
+                });
+
+            return false;
+        }
+
+        // CREATE USER
+        function createUser(form,event) {
+            event.preventDefault();
+
+            const createUserApiUrl = serverApiBaseUrl;
+            const createUserElement = document.querySelector('#create-user');
+            createUserElement.innerHTML = '<em>loading user by id...</em>';
+
+            const newUser = createObjectFromForm(form);
+
+            fetch(createUserApiUrl, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newUser)
+            })
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw Error(response.statusText);
+                    }
+                    return response.json();
+                })
+                .catch(manageHttpErrorResponse)
+                .then(function (user) {
+                    if (!user) {
+                        createUserElement.innerHTML = '<em>l\'utente non è stato creato</em>';
+                        return;
+                    }
+                    createUserElement.innerHTML = `CREATO: <strong>${user.id} - ${user.name} ${user.surname}</strong>`;
+                });
+
+            return false;
+        }
+
+        // UPDATE USER
+        function updateUser(form,event) {
+            event.preventDefault();
+            
+            const updateUserApiUrl = serverApiBaseUrl;
+            const updateUserElement = document.querySelector('#update-user');
+            updateUserElement.innerHTML = '<em>updating user by id...</em>';
+
+            const newUser = createObjectFromForm(form);
+
+            fetch(`${updateUserApiUrl}/${newUser.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newUser)
+            })
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw Error(response.statusText);
+                    }
+                    return response.json();
+                })
+                .catch(manageHttpErrorResponse)
+                .then(function (user) {
+                    if (!user) {
+                        updateUserElement.innerHTML = '<em>l\'utente non è stato modificato</em>';
+                        return;
+                    }
+                    updateUserElement.innerHTML = `MODIFICATO: <strong>${user.id} - ${user.name} ${user.surname}</strong>`;
+                });
+
+            return false;
+        }
+
+        // DELETE USER
+        function deleteUser(form,event) {
+            event.preventDefault();
+
+            const deleteUserApiUrl = serverApiBaseUrl;
+            const deleteUserElement = document.querySelector('#delete-user');
+            deleteUserElement.innerHTML = `<em>deleting user by id...</em>`;
+
+            let userId = form.querySelector('[name=id]').value;
+
+            fetch(`${deleteUserApiUrl}/${userId}`, {
+                method: 'DELETE'
+            })
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw Error(response.statusText);
+                    }
+                    return response.json();
+                })
+                .catch(manageHttpErrorResponse)
+                .then(function (user) {
+                    if (!user) {
+                        deleteUserElement.innerHTML = `<em>l'utente non è stato eliminato</em>`;
+                        return;
+                    }
+                    deleteUserElement.innerHTML = `ELIMINATO: <strong>${user.id} - ${user.name} ${user.surname}</strong>`;
+                });
+
+            return false;
+        }
+
+        /**
+         * Costruisce un oggetto dalla lista dei campi che ha:
+         *  CHIAVI: i valori degli attributi "name" dei campi
+         *  VALORI: i valori degli attributi "value"
+         */
+        function createObjectFromForm(form) {
+            // trovo tutti i figli di form che sono dei campi (field)
+            // NB: querySelectorAll restituisce una lista di nodi che non è esattamente un array!
+            const fieldList = form.querySelectorAll('input,select,textarea');
+
+            // trasformo la lista dei campi del form in un array
+            const array = Array.from(fieldList);
+
+            // utilizzo la funzione reduce degli array per creare l'oggetto ciclando sugli elementi
+
+            return array.reduce(function (obj, el) {
+                obj[el.name] = el.value;
+                return obj;
+            }, {});
+        }
+
+
+        /** 
+         * Funzione per gestire gli errori
+         */
+        function manageHttpErrorResponse(e){
+            console.log(e);
+            alert(`${e}\nGuarda in console per avere maggiori informazioni.`);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+[
+    {
+        "id": 1,
+        "name": "Daniel",
+        "surname": "Zotti",
+        "bio": "Questo è un test della biografia!\nChissà se va a capo!\n\nSi, va a capo :)",
+        "contacts": [
+            { "id": 1, "label": "email", "value" : "admin@danielzotti.it", "url":"mailto:admin@danielzotti.it" },
+            { "id": 2, "label": "tel", "value" : "3491234567", "url":"tel:3491234567" },
+            { "id": 3, "label": "website", "value" : "danielzotti.it", "url":"http://danielzotti.it"  }
+        ],
+        "hobbies": [
+            { "id": 1, "icon": "futbol", "value" : "Giocare a calcio" },
+            { "id": 2, "icon": "book-open", "value" : "Leggere" },
+            { "id": 3, "icon": "file-code", "value" : "Programmare" }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Nuovo",
+        "surname": "Utente",
+        "hobbies": [
+            { "id": 1, "icon": "futbol", "value" : "Giocare a calcio" },
+            { "id": 2, "icon": "book-open", "value" : "Leggere" },
+            { "id": 3, "icon": "file-code", "value" : "Programmare" }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Mario",
+        "surname": "Rossi",
+        "contacts": [
+            { "id": 1, "label": "email", "value" : "admin@danielzotti.it", "url":"mailto:admin@danielzotti.it" },
+            { "id": 2, "label": "tel", "value" : "3491234567", "url":"tel:3491234567" },
+            { "id": 3, "label": "website", "value" : "danielzotti.it", "url":"http://danielzotti.it"  }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Luigi",
+        "surname": "Bianchi"
+    },
+    {
+        "id": 7,
+        "name": "Emoji",
+        "surname": "😋"
+    },
+    {
+        "id": 8,
+        "name": "Nome",
+        "surname": "Cognome"
+    }
+]

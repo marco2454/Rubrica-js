@@ -1,0 +1,121 @@
+:root {
+    /* table */
+    --table-border-color:var(--primary-light);
+    --table-row-bg-color:var(--primary-extra-light);
+    --table-row-hover-bg-color:var(--secondary-light);
+    --table-id-color:var(black);
+    --table-id-bg-color:var(--secondary);
+    --table-id-hover-bg-color:var(--secondary-light);
+}
+
+/* SECTION SEARCH PERSON */
+.search-person-fields {
+    position: relative;
+}
+.add-person-field .has-error {
+    border:1px solid red;
+}
+.search-person-field.reset{
+    position: absolute;
+    right:7px;
+    top:7px;
+    cursor: pointer;
+}
+
+/* SECTION ADD PERSON */
+#section-search-person, #section-add-person {
+    max-width: 100%;
+    width: 450px;
+    border-radius: var(--border-radius-default);
+    border:1px solid var(--primary);
+    margin-top:var(--margin-default);
+    margin-bottom:var(--margin-default);
+}
+.add-person-title {
+    margin:0;
+    margin-bottom: var(--margin-default);
+}
+
+.add-person-fields {
+    font-size: 0;
+}
+
+.add-person-field {
+    display: inline-block;
+    font-size:15px;
+    vertical-align: middle;
+    
+    /* padding:var(--margin-small); */
+    padding-right:var(--margin-small);
+}
+
+.add-person-field.input{
+    width:40%;
+}
+.add-person-field.button {
+    width:20%;
+}
+
+/* SECTION TABLE */
+#section-table {
+    text-align: center;
+}
+.table-wrapper {
+    display: inline-block;
+    position: relative;
+    border-radius:var(--border-radius-default,20px);
+    border: 1px solid var(--table-border-color,#000);
+    overflow: hidden;
+}
+table {
+    border-collapse: collapse;
+    min-width:350px;
+    max-width: 100%;
+    width: 450px;
+    font-size: 20px;
+}
+td, th {
+    text-align: left;
+    padding:var(--margin-default,10px);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    max-width: 150px;
+}
+
+tbody tr:nth-of-type(2n+1) {
+    background-color:var(--table-row-bg-color,gray);
+}
+
+tbody tr:hover {
+    background-color:var(--table-row-hover-bg-color,blue);
+}
+
+tbody tr:hover td {
+    background-color:var(--table-row-hover-bg-color,blue);
+    white-space: normal;
+}
+td.person-id a {
+    text-decoration: none;
+    box-sizing: content-box;
+    font-weight: bold;
+    background-color:var(--table-id-bg-color,yellow);
+    display: inline-block;
+    border-radius: 50%;
+    padding:5px;
+    width:20px;
+    height: 20px;
+    color:var(--table-id-color,black);
+    line-height: 20px;
+    text-align: center;
+    transition-property: background-color, border-radius;
+    transition-duration:0.3s;
+}
+td.person-id a:hover {
+    background-color:var(--table-id-hover-bg-color,black);
+    border-radius: 0;
+}
+
+tbody tr td:nth-child(3) {
+    text-transform: uppercase;
+}

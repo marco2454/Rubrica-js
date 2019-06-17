@@ -1,0 +1,157 @@
+:root {
+    /* detail */
+    --info-bg-color:var(--primary);
+    --info-color:var(--primary-text);
+
+    --contact-item-bg-color:var(--primary-light);
+    --contact-item-color:var(--primary-text);
+
+    --bio-bg-color:var(--primary-text);
+    --bio-color:var(--primary-dark);
+    --bio-border-color:var(--primary-default-text);
+}
+.name {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+/* INFO */
+#info {
+    margin-top:var(--margin-big,50px);
+    background-color:var(--info-bg-color);
+    color:var(--info-color);
+    padding:var(--margin-medium,10px);
+    border-radius:var(--border-radius-default,20px);
+}
+
+#info a {
+    color:var(--info-color);
+}
+
+#info-profile-pic {
+    display: inline-block;
+    vertical-align: top;
+    width:30%;
+    padding-right: var(--margin-default,10px);
+}
+
+#info-profile-pic button {
+    margin-bottom: var(--margin-default);
+}
+
+#info-profile-pic img {
+    width:100%;
+}
+
+#info-content {
+    display: inline-block;
+    vertical-align: top;
+    width:65%;
+}
+
+.btn-edit {
+    float: right;
+}
+.btn-edit button {
+    display: inline-block;
+    width:120px;
+}
+
+/* INFO */
+
+#contacts ul {
+    list-style:none;
+    padding:0;
+}
+#contacts li {
+    padding:var(--margin-default,10px);
+    margin-top:var(--margin-default,10px);
+    margin-bottom:var(--margin-default,10px);
+    background-color:var(--contact-item-bg-color);
+    color:var(--contact-item-color);
+    border-radius:5px;
+}
+
+#contacts li label {
+    display: inline-block;
+    font-weight: 600;
+    width:70px;
+}
+
+.info-element {
+    display: inline-block;
+    vertical-align: top;
+    padding:var(--margin-default,15px);
+}
+
+/* HOBBIES */
+#hobbies ul {
+    list-style: none;
+    padding-left: 0;
+}
+#hobbies ul li {
+    padding-bottom: var(--margin-default,15px);
+}
+
+#hobbies ul .fa {
+    width:50px;
+    text-align: center;
+    font-size: calc(1.5 * var(--font-size-default));
+}
+#hobbies li .fa, #hobbies li span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* BIO */
+#bio {
+    background-color:var(--primary-text);
+    color:var(--primary-dark);
+    border-radius: 5px;
+    border: 1px solid var(--bio-border-color);
+    display: block;
+}
+#bio p {
+    font-style: italic;
+}
+
+/* EDIT */
+#edit {
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:var(--margin-big,50px);
+    padding:var(--margin-medium,10px);
+    border-radius:var(--border-radius-default,20px);
+    border:1px solid var(--primary);
+}
+
+input, textarea {
+    margin-bottom: var(--margin-default);
+}
+
+input[name='name'],input[name='surname'] {
+    width:45%;
+}
+#edit .buttons {
+    text-align: right;
+}
+#edit button {
+    margin:var(--margin-small);
+    width: 120px;
+}
+
+fieldset {
+    position: relative;
+}
+
+fieldset .icon {
+    position: absolute;
+    top:3px;
+    right:3px;
+    cursor: pointer;
+}
+
+.fieldset-container {
+    margin-bottom: var(--margin-medium);
+}

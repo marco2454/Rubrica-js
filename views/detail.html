@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Rubrica JS</title>
+
+    <!-- Descrizione max 160 caratteri -->
+    <meta name="description"
+        content="Pagina di dettaglio per la seconda esercitazione in classe di Martedì 7 Maggio 2019">
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <!-- STYLE -->
+
+    <!-- foglio di reset per rendere omogenea la grafica di base su tutti i browser (normalize.css) -->
+    <link rel="stylesheet" href="/css/normalize.css">
+
+    <!-- Variabili del tema -->
+    <link rel="stylesheet" href="/css/theme/light.css">
+
+    <!-- Stile globale -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Stile della pagina -->
+    <link rel="stylesheet" href="/css/detail.css">
+
+    <!-- SCRIPT -->
+
+    <!-- Script common -->
+    <script src="/js/common.js"></script>
+
+    <!-- Script api users -->
+    <script src="/js/userApi.js"></script>
+
+    <!-- Script della pagina -->
+    <script src="/js/detail.js"></script>
+
+</head>
+
+<body onload="return getPersonDetail()">
+    <header>
+        <h1><i class="fa fa-phone-square"></i> <a href="/">Rubrica JS</a></h1>
+    </header>
+
+
+    <section class="container">
+        <div id="loader"><i class="fa fa-circle-notch fa-spin"></i></div>
+        <section id="info" style="display: none;">
+            <div id="info-profile-pic">
+                <img id="value-picture" src="" />
+                <!-- http://www.danielzotti.it/assets/videoprofile/videoprofile.gif -->
+                <!-- <div>
+                    <button class="btn-inverse" onclick="openUploadImageModal()"><i class="fa fa-camera"></i> Carica foto</button>
+                </div> -->
+            </div>
+            <div id="info-content">
+                <div class="btn-edit">
+                    <button class="btn-inverse" onclick="toggleEdit()"><i class="fa fa-pencil-alt"></i> Modifica</button>
+                </div>
+                <h2 class="name">
+                    <span id="value-name">
+                        <!-- [NAME]: Daniel Zotti -->
+                    </span>&nbsp;
+                    <span id="value-surname">
+                        <!-- [SURNAME]: Zotti -->
+                    </span>
+                </h2>
+                <section id="contacts" class="info-element">
+                    <h3 class="info-title">Contatti</h3>
+                    <ul id="value-contacts">
+                        <li>
+                            Nessuno
+                        </li>
+                        <!-- [CONTACTS] 
+                            <li>
+                            <label>Email</label>
+                            <a href="mailto:admin@danielzotti.it" target="_blank">admin@danielzotti.it</a>
+                        </li> -->
+                    </ul>
+                </section>
+                <section id="hobbies" class="info-element">
+                    <h3 class="info-title">Hobbies</h3>
+                    <ul id="value-hobbies">
+                        <li>
+                            Nessuno
+                        </li>
+                        <!--  [HOBBIES]
+                        <li>
+                            <i class="fa fa-futbol"></i>
+                            <span>Giocare a calcio</span>
+                        </li> -->
+                    </ul>
+                </section>
+                <section id="bio" class="info-element">
+                    <h3 class="info-title">Bio</h3>
+                    <p id="value-bio">
+                        <em>Nessuna informazione</em>
+                        <!-- [BIO] 
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, id. Exercitationem, consequuntur
+                            consectetur
+                            quo alias sit odit ullam soluta numquam explicabo itaque error nihil reiciendis adipisci magni
+                            accusamus
+                            facilis tempore!</p>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, id. Exercitationem, consequuntur
+                            consectetur
+                            quo alias sit odit ullam soluta numquam explicabo itaque error nihil reiciendis adipisci magni
+                            accusamus
+                            facilis tempore!</p> -->
+                    </p>
+                </section>
+            </div>
+        </section>
+        <section id="edit" style="display: none;">
+            <form onsubmit="return savePersonDetail(this,event)">
+                <h2>Modifica dati della persona</h2>
+                <input name="id" type="hidden">
+                <input name="name" placeholder="nome">
+                <input name="surname" placeholder="cognome">
+                <h4>Bio</h4>
+                <textarea name="bio" placeholder="biografia"></textarea>
+                <h4>Foto profilo</h4>
+                <p><small>ES: http://www.danielzotti.it/assets/videoprofile/videoprofile.gif</small></p>
+                <input name="picture" placeholder="url dell'immagine">
+                <h4>Contatti</h4>
+                <div class="fieldset-container">
+                    <div id="edit-contacts">
+                        <!-- [CONTACT] 
+                            <fieldset>
+                                <input name="contact.label" placeholder="nome">
+                                <input name="contact.value" placeholder="contatto">
+                                <input name="contact.url" placeholder="url contatto">
+                            </fieldset> 
+                        -->
+                    </div>
+                    <button type="button" onclick="return addFieldset('contacts')"><i class="fa fa-plus"></i> contatto</button>
+                </div>
+
+                <h4>Hobbies</h4>
+                <div class="fieldset-container">
+                    <div id="edit-hobbies">
+                        <!-- [HOBBY]
+                            <fieldset>
+                                <input name="hobbie.icon" placeholder="classe icona font awesome (e.s. futbol)">
+                                <input name="hobbie.value" placeholder="hobby">
+                            </fieldset> 
+                        -->
+                    </div>
+                    <button type="button" onclick="return addFieldset('hobbies')"><i class="fa fa-plus"></i> hobby</button>
+                </div>
+                <div class="buttons">
+                    <button class="btn-inverse" type="button" onclick="toggleEdit()">Annulla</button>
+                    <button class="btn" type="submit">Salva</button>
+                </div>
+            </form>
+        </section>
+
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+:root {
+    --primary-default-bg:#FFF;
+    --primary-default-text:#000;
+    --primary:#1976d2;
+    --primary-light:#63a4ff;
+    --primary-extra-light:#d0e6fb;
+    --primary-dark:#004ba0;
+    --primary-text:#FFF;
+
+    --secondary: #fdd835;
+    --secondary-light:#ffff6b;
+    --secondary-dark:#c6a700;
+    --secondary-text:#000;
+
+    --color-bg: var(--primary-default-bg);
+    --color-text: var(--primary-default-text);
+}
