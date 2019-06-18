@@ -15,6 +15,26 @@ async function getTablePersons() {
 }
 
 
+// DELETE USER
+async function removeTablePerson(userId) {
+    const hasConfirmed = confirm(`Sei sicuro di voler eliminare la persona con ID = ${userId}?`);
+    if(!hasConfirmed) {
+        return;
+    }
+    
+    const tableRow = document.querySelector(`#table #row${userId}`);
+    
+    const user = await deleteUserFromApi(userId);
+
+    if (!user) {
+        return;
+    }
+
+    tableRow.parentNode.removeChild(tableRow);
+    
+}
+
+
 // SEARCH USER  
 function resetSearchTablePerson(){
     document.querySelector('#form-search input').value = null;
