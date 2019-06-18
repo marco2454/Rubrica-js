@@ -1,92 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Rubrica JS</title>
-
-    <!-- Descrizione max 160 caratteri -->
-    <meta name="description"
-        content="Seconda esercitazione in classe di Martedì 7 Maggio 2019. Una rubrica con una grafica migliore">
-
-    <!-- Font awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-    <!-- foglio di reset per rendere omogenea la grafica di base su tutti i browser (normalize.css) -->
-    <link rel="stylesheet" href="/css/normalize.css">
-
-    <!-- Variabili del tema -->
-    <link rel="stylesheet" href="/css/theme/light.css">
-
-    <!-- Stile globale -->
-    <link rel="stylesheet" href="/css/style.css">
-
-    <!-- Stile della pagina -->
-    <link rel="stylesheet" href="/css/index.css">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Lista Pazienti</title>
 </head>
-
 <body>
-    <header>
-        <h1><i class="fa fa-phone-square"></i> Rubrica JS</h1>
-    </header>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <!-- INFO -->
-    <section id="section-info" class="container-small">
-        <h2>Scopo dell'esercitazione</h2>
-        <p>
-            aggiungere dati dinamici alla rubrica della seconda esercitazione.
-        </p>
-        <div>
-            <h3>Cose da fare:</h3>
-            <ul>
-                <li>
-                    Visualizzazione <em>tabellare</em>
-                    <ol>
-                        <li>Creazione nuova persona</li>
-                        <li>Eliminazione di una persona</li>
-                        <li>Ricerca di una persona</li>
-                    </ol>
-                </li>
-                <li>
-                    Visualizzazione <em>tabellare</em>
-                    <ol>
-                        Modifica dei dati della persona
-                    </ol>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <h3>Link utili:</h3>
-            <ul>
-                <li>
-                    Server per la gestione dei dati dei contatti (<a
-                        href="https://gitlab.com/fondazione-its-volta/2019/programmazione-web/server"
-                        target="_blank">GitLab</a>)
-                </li>
-            </ul>
-        </div>
-    </section>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Pazienti:</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Cognome" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cerca</button>
+              </form>
+              <div class="my-2 my-lg-0"></div>
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Inserisci</button>
+              </div>
+            </div>
+          </nav>
 
+    <table class="table table-striped table-bordered table-hover text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Cognome</th>
+                <th scope="col">Codice Fiscale</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Marco</td>
+                <td>Porzio</td>
+                <td>NTNVLC72A01L424H</td>
+                <td>_insert_delete_and_details_here_</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Anton</td>
+                <td>Vasilache</td>
+                <td>OUYGTC72A01L424A</td>
+                <td>_insert_delete_and_details_here_</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Marco</td>
+                <td>Zio</td>
+                <td>TYHFSC72A01L424H</td>
+                <td>_insert_delete_and_details_here_</td>
 
-    <!-- DESIGN SELECTOR -->
-    <section id="section-design" class="container-small">
-        <h2>Seleziona una pagina</h2>
-        <div class="design-box-container">
-            <a class="design-box" href="/views/table.html">
-                <i class="fa fa-table"></i> <span>Tabella</span>
-            </a>
-        </div>
-        <div class="design-box-container">
-            <a class="design-box" href="/views/detail.html?id=1">
-                <i class="fa fa-user"></i> <span>Dettaglio</span>
-            </a>
-        </div>
-    </section>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </html>
