@@ -115,7 +115,7 @@ async function searchTablePerson(event) {
     const users = await searchUsersFromApi(searchString);
     
     if (!users || users.length === 0) {
-        tableTbody.innerHTML = '<tr><td colspan="4">nessuna persona</td></tr>';
+        tableTbody.innerHTML = '<tr><td colspan="5">nessuna persona</td></tr>';
         return;
     }
     tableTbody.innerHTML = '';
