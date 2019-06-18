@@ -30,7 +30,10 @@
 </head>
 <body onload="getTablePersons()">
     <nav class="navbar navbar-dark bg-dark justify-content-between">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-plus"></i> Aggiungi</button>
+        <button type="button" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#ModalLoginForm">
+                <i class="fas fa-plus"></i> Aggiungi
+          </button>
+          
         <a class="navbar-brand" href="#"></a>
           <form  onsubmit="return searchTablePerson(event)" id="form-search" class="form-inline">
             <input class="form-control mr-sm-2" type="search" placeholder="Cerca..." aria-label="Search" onkeyup="searchTablePerson(event)" autocomplete="off">
@@ -71,5 +74,45 @@
               </tr>>-->
         </tbody>
     </table>
+
+
+    <!-- Modal HTML Markup -->
+<div id="ModalLoginForm" class="modal fade">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h2>Nuovo Paziente</h2>
+                    <form role="form" method="POST" action="">
+                        <input type="hidden" name="_token" value="">
+                        <div class="form-group">
+                            <label class="control-label">Nome</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" name="agg_nome" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Cognome</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" name="agg_cognome" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Codice Fiscale</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" name="agg_codice_fiscale" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <button type="submit" class="btn btn-success">
+                                    Aggiungi
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 </body>
