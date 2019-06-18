@@ -71,6 +71,6 @@ function printTableRowTemplate(user){
         <td>${user.name}</td>
         <td>${user.surname}</td>
         <td>${user.codiceFiscale}</td>
-        <td><span class="icon-delete"><i class="fa fa-trash" onclick="removeTablePerson(${user.id})"></i></span></td>
+        <td><span class="icon-delete"><i class="fas fa-edit"></i> <i class="fa fa-trash" onclick="removeTablePerson(${user.id})"></i></span></td>
     </tr>`
 }
