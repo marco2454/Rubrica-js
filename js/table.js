@@ -71,27 +71,27 @@ async function removeTablePerson(userId) {
             }
         },
         
-        callback: function (result) {
+        callback: async function (result) {
             console.log('This was logged in the callback: ' + result);
             hasConfirmed = result;
             console.log(hasConfirmed);
+
+            if(!hasConfirmed) {
+                return;
+            }
+            const tableRow = document.querySelector(`#table #row${userId}`);
+            
+            const user = await deleteUserFromApi(userId);
+
+            if (!user) {
+                return;
+            }
+
+            tableRow.parentNode.removeChild(tableRow);
         }
     });
 
-    console.log(`Dopo l'alter ${hasConfirmed}`);
-
-    if(!hasConfirmed) {
-        return;
-    }
-    const tableRow = document.querySelector(`#table #row${userId}`);
     
-    const user = await deleteUserFromApi(userId);
-
-    if (!user) {
-        return;
-    }
-
-    tableRow.parentNode.removeChild(tableRow);
     
 }
 
