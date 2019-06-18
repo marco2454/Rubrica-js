@@ -17,10 +17,16 @@ async function getTablePersons() {
 
 // DELETE USER
 async function removeTablePerson(userId) {
-    const hasConfirmed = confirm(`Sei sicuro di voler eliminare la persona con ID = ${userId}?`);
-    if(!hasConfirmed) {
-        return;
-    }
+    // const hasConfirmed = confirm(`Sei sicuro di voler eliminare la persona con ID = ${userId}?`);
+    // if(!hasConfirmed) {
+    //     return;
+    // }
+
+    let bootbox = document.getElementsByTagName("script")[0];
+    console.log(bootbox);
+    bootbox.confirm("This is the default confirm!", function(result){ 
+        console.log('This was logged in the callback: ' + result); 
+    });
     
     const tableRow = document.querySelector(`#table #row${userId}`);
     
