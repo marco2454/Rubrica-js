@@ -38,20 +38,16 @@
     
   </head>
 <body onload="getTablePersons()">
-    <nav class="navbar navbar-dark bg-dark justify-content-between navbar-expand-lg">
+    <nav class="navbar navbar-dark bg-dark justify-content-between">
         <button type="button" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#ModalLoginForm">
                 <i class="fas fa-plus"></i> Aggiungi
-        </button>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          </button>
+          
         <a class="navbar-brand" href="#"></a>
           <form  onsubmit="return searchTablePerson(event)" id="form-search" class="form-inline">
             <input class="form-control mr-sm-2" type="search" placeholder="Cerca..." aria-label="Search" onkeyup="searchTablePerson(event)" autocomplete="off">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> Cerca</button>
           </form>
-          </div>
         </nav>
     <table id="table" class="table table-striped table-bordered table-hover text-center">
         <thead class="thead-dark">
