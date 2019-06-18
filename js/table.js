@@ -15,19 +15,74 @@ async function getTablePersons() {
 }
 
 
+// CREATE USER
+async function addTablePerson(form,event) {
+    event.preventDefault();
+    const tableTbody = document.querySelector('#table tbody');
+    
+    let newPerson = createObjectFromForm(form);
+
+    // Gestione degli errori
+    Array.from(form.querySelectorAll('input')).forEach(field => {
+        field.classList.remove('has-error');
+    })
+    if(!newPerson.surname || newPerson.surname === '') {
+        form.querySelector('[name="surname"]').classList.add('has-error');
+        bootbox.alert('Il cognome è obbligatorio!');
+        return;
+    }
+
+    const user = await createUserFromApi(newPerson);
+
+    Array.from(form.querySelectorAll('input')).forEach(field => {
+        field.value = '';
+    });
+
+
+    if (!user) {
+        return;
+    }
+
+    sectionTableTbody.innerHTML += printTableRowTemplate(user);
+}
+
+
 // DELETE USER
 async function removeTablePerson(userId) {
-    // const hasConfirmed = confirm(`Sei sicuro di voler eliminare la persona con ID = ${userId}?`);
-    // if(!hasConfirmed) {
-    //     return;
-    // }
-
-    let bootbox = document.getElementsByTagName("script")[0];
-    console.log(bootbox);
-    bootbox.confirm("This is the default confirm!", function(result){ 
-        console.log('This was logged in the callback: ' + result); 
-    });
+//    const hasConfirmed = confirm(`Sei sicuro di voler eliminare la persona con ID = ${userId}?`);
     
+    // const hasConfirmed = bootbox.confirm(`Sei sicuro di voler eliminare la persona con ID = ${userId}?`, function(result){ 
+    //     console.log('This was logged in the callback: ' + result); 
+    // });
+    
+    let hasConfirmed = false;
+
+    bootbox.confirm({
+        title: `Eliminazione`,
+        message: `Sei sicuro di voler eliminare la persona con ID = ${userId}?`,
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> Cancel',
+                className: 'btn-danger'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Confirm',
+                className: 'btn-success'
+            }
+        },
+        
+        callback: function (result) {
+            console.log('This was logged in the callback: ' + result);
+            hasConfirmed = result;
+            console.log(hasConfirmed);
+        }
+    });
+
+    console.log(`Dopo l'alter ${hasConfirmed}`);
+
+    if(!hasConfirmed) {
+        return;
+    }
     const tableRow = document.querySelector(`#table #row${userId}`);
     
     const user = await deleteUserFromApi(userId);
@@ -76,7 +131,7 @@ function printTableRowTemplate(user){
         <td class="person-id" title="Apri la pagina di dettaglio"><a href="/views/detail.html?id=${user.id}">${user.id}</a></td>
         <td>${user.name}</td>
         <td>${user.surname}</td>
-        <td>${user.codiceFiscale}</td>
+        <td>${user.codice_fiscale}</td>
         <td><span class="icon-delete"><i class="fas fa-edit"></i> <i class="fa fa-trash" onclick="removeTablePerson(${user.id})"></i></span></td>
     </tr>`
 }
