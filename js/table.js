@@ -1,43 +1,45 @@
 // GET USERS
 async function getTablePersons() {
-    const sectionTableTbody = document.querySelector('#table tbody');
+    const tableTbody = document.querySelector('#table tbody');
     const users = await getUsersFromApi();
     
     if (!users || users.length === 0) {
-        sectionTableTbody.innerHTML = '<tr><td colspan="4">nessuna persona</td></tr>';
+        tableTbody.innerHTML = '<tr><td colspan="4">nessuna persona</td></tr>';
         return;
     }
-    sectionTableTbody.innerHTML = '';
+    tableTbody.innerHTML = '';
     users.forEach(function (user) {
-        sectionTableTbody.innerHTML += printTableRowTemplate(user);
+        tableTbody.innerHTML += printTableRowTemplate(user);
+        // console.log(user);
     });
 }
 
 
-// SEARCH USER
+// SEARCH USER  
 function resetSearchTablePerson(){
-    document.querySelector('#section-search-person input').value = null;
+    document.querySelector('#form-search input').value = null;
     getTablePersons();
 }
 async function searchTablePerson(event) {
     event.preventDefault();
     
-    const searchString = document.querySelector('#section-search-person input').value;
+    const searchString = document.querySelector('#form-search input').value;
+    console.log(searchString);
 
     if(!searchString || searchString === '') {
         return resetSearchTablePerson();
     }
 
-    const sectionTableTbody = document.querySelector('#section-table tbody');
+    const tableTbody = document.querySelector('#table tbody');
     const users = await searchUsersFromApi(searchString);
     
     if (!users || users.length === 0) {
-        sectionTableTbody.innerHTML = '<tr><td colspan="4">nessuna persona</td></tr>';
+        tableTbody.innerHTML = '<tr><td colspan="4">nessuna persona</td></tr>';
         return;
     }
-    sectionTableTbody.innerHTML = '';
+    tableTbody.innerHTML = '';
     users.forEach(function (user) {
-        sectionTableTbody.innerHTML += printTableRowTemplate(user);
+        tableTbody.innerHTML += printTableRowTemplate(user);
     });
     
 }
