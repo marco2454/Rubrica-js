@@ -41,3 +41,12 @@ h1#h1-title {
     min-height: 250px;
     max-height: 400px;
 }
+
+i#home {
+    text-decoration: none;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}

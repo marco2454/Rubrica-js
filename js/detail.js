@@ -94,7 +94,7 @@ function rebuildUiAndForm() {
     // Aggiorno il titolo della pagina
     titleElement.innerHTML = `${user.surname} | Rubrica JS`;
 
-    h1Element.innerHTML = `<i class="fas fa-clinic-medical"></i> Scheda Paziente</h1> |  ${user.name} ${user.surname}`;
+    h1Element.innerHTML = `<a href="/index.html"><i id="home" class="fas fa-clinic-medical" title="Home"></i></a> Scheda Paziente |  ${user.name} ${user.surname}`;
 
     tableInfoElement.innerHTML = '';
     
