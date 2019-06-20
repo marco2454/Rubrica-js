@@ -128,7 +128,7 @@ async function searchTablePerson(event) {
 //PRINT TABLE
 function printTableRowTemplate(user){
     return `<tr id="row${user.id}">
-        <td class="person-id" title="Apri la pagina di dettaglio"><a href="/views/detail.html?id=${user.id}">${user.id}</a></td>
+        <td class="person-id" title="Apri la pagina di dettaglio"><a href="/pazienti/detail.html?id=${user.id}" target="_blank">${user.id}</a></td>
         <td>${user.name}</td>
         <td>${user.surname}</td>
         <td>${user.codice_fiscale}</td>
