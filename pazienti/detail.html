@@ -41,8 +41,9 @@
 </head>
 
 <body onload="return getPersonDetail()">
-
-      <h1 class="text-center">Scheda Paziente</h1>
+      <nav class="navbar navbar-dark bg-dark" id="nav-title">
+            <h1 class="text-center" id="title"><i class="fas fa-clinic-medical"></i> Scheda Paziente</h1>
+      </nav>
       <table class="table table-striped" id="info">
             <tbody>
                   <tr>
@@ -89,8 +90,8 @@
                   </tr>
             </tbody>
       </table>
-      <p id="storico" class="text-left">Storico Paziente</p>
-      <textarea class="form-control form-control-center" id="area" name="storico" rows="15" readonly></textarea>
+      <p id="storico" class="text-center">Storico Paziente</p>
+      <textarea class="form-control form-control-center" id="area" name="storico" readonly></textarea>
 </body>
 
 </html>

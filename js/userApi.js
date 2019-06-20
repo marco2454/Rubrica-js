@@ -112,6 +112,9 @@ async function deleteUserFromApi(userId){
  */
 function manageHttpErrorResponse(e){
     console.log(e);
-    alert(`${e}\nGuarda in console per avere maggiori informazioni.`);
+    // alert(`${e}\nGuarda in console per avere maggiori informazioni.`);
+    bootbox.alert({
+        message: `${e}\nGuarda in console per avere maggiori informazioni.`,
+        className: 'rubberBand animated'
+    });
 }
-
