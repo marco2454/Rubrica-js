@@ -1,68 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="/CSS/myStyle.css">
-    <title>Scheda Paziente</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+      <!-- Font Aweaome -->
+
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+      <!-- Bootstrap CSS -->
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      
+      <!-- Css -->
+      <link rel="stylesheet" href="/CSS/myStyle.css">
+
+      <!-- SCRIPTS -->
+
+      <!-- Scripts Bootstrap -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+      <script type="text/javascript" src="/js/bootbox.min.js"></script>
+  
+      <!-- Script common -->
+      <script src="/js/common.js"></script>
+      
+      <!-- Script api users -->
+      <script src="/js/userApi.js"></script>
+  
+      <!-- Script della pagina -->
+      <script src="/js/detail.js"></script>
+
+      <title>Scheda Paziente</title>
 </head>
-<body>
-    <h1 class="text-center">Scheda Paziente</h1>
-    <table class="table table-striped">
-        <tbody>
-          <tr>
-            <td class="text-right">Nome</td>
-            <td>
-                <label ></label>
-                <input class="text-left" type="text" class="form-control" readonly>
-            </td>
-          </tr>
-          <tr>
-                <td class="text-right">Cognome</td>
-                <td>
-                        <label ></label>
-                        <input class="text-left" type="text" class="form-control" readonly>
-                </td>
-          </tr>
-          <tr>
-                <td class="text-right">Codice Fiscale</td>
-                <td>
-                        <label ></label>
-                        <input class="text-left" type="text" class="form-control" readonly>
-                </td>
-          </tr>
-          <tr>
-                <td class="text-right">Telefono</td>
-                <td>
-                        <label ></label>
-                        <input class="text-left" type="text" class="form-control" readonly>
-                </td>
-          </tr><tr>
-                <td class="text-right">Luogo di Nascita</td>
-                <td>
-                        <label ></label>
-                        <input class="text-left" type="text" class="form-control" readonly>
-                </td>
-          </tr><tr>
-                <td class="text-right">Data di Nascita</td>
-                <td>
-                        <label ></label>
-                        <input class="text-left" type="text" class="form-control" readonly>
-                </td>
-          </tr><tr>
-                <td class="text-right">Gruppo Sanguigno</td>
-                <td>
-                        <label ></label>
-                        <input class="text-left" type="text" class="form-control" readonly>
-                </td>
-          </tr>
-        </tbody>
+
+<body onload="return getPersonDetail()">
+
+      <h1 class="text-center">Scheda Paziente</h1>
+      <table class="table table-striped" id="info">
+            <tbody>
+                  <tr>
+                        <td class="text-right"><i class="fas fa-signature"></i> Nome</td>
+                        <td>
+                              <input class="text-left" type="text" class="form-control" readonly>
+                        </td>
+                  </tr>
+                  <tr>
+                        <td class="text-right"><i class="fas fa-signature"></i> Cognome</td>
+                        <td>
+                              <input class="text-left" type="text" class="form-control" readonly>
+                        </td>
+                  </tr>
+                  <tr>
+                        <td class="text-right"><i class="fas fa-signature"></i> Codice Fiscale</td>
+                        <td>
+                              <input class="text-left" type="text" class="form-control" readonly>
+                        </td>
+                  </tr>
+                  <tr>
+                        <td class="text-right"><i class="fas fa-phone"></i> Telefono</td>
+                        <td>
+                                <input class="text-left" type="text" class="form-control" readonly>
+                        </td>
+                  </tr>
+                  <tr>
+                        <td class="text-right"><i class="fas fa-baby-carriage"></i> Luogo di Nascita</td>
+                        <td>
+                              <input class="text-left" type="text" class="form-control" readonly>
+                        </td>
+                  </tr>
+                  <tr>
+                        <td class="text-right"><i class="fas fa-birthday-cake"></i> Data di Nascita</td>
+                        <td>
+                              <input class="text-left" type="text" class="form-control" readonly>
+                        </td>
+                  </tr>
+                  <tr>
+                        <td class="text-right"><i class="fas fa-tint"></i> Gruppo Sanguigno</td>
+                        <td>
+                              <input class="text-left" type="text" class="form-control" readonly>
+                        </td>
+                  </tr>
+            </tbody>
       </table>
-      <p id="storico" class="text-center">Storico Paziente</p>
-      <textarea class="form-control form-control-center" id="area" name="storico"    rows="15" readonly></textarea>
+      <p id="storico" class="text-left">Storico Paziente</p>
+      <textarea class="form-control form-control-center" id="area" name="storico" rows="15" readonly></textarea>
 </body>
+
 </html>

@@ -136,6 +136,7 @@ function updatePersonUiFromObject(element, person) {
         pictureElement.parentNode.style.display = 'none';
     }
 }
+
 function updateListUi(element, list, type) {
     if (list && list.length > 0) {
         element.innerHTML = '';
