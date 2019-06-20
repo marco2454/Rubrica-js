@@ -62,11 +62,11 @@ async function removeTablePerson(userId) {
         message: `Sei sicuro di voler eliminare la persona con ID = ${userId}?`,
         buttons: {
             cancel: {
-                label: '<i class="fa fa-times"></i> Cancel',
+                label: '<i class="fa fa-times"></i> Annulla',
                 className: 'btn-danger'
             },
             confirm: {
-                label: '<i class="fa fa-check"></i> Confirm',
+                label: '<i class="fa fa-check"></i> Conferma',
                 className: 'btn-success'
             }
         },

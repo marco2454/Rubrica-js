@@ -42,56 +42,58 @@
 
 <body onload="return getPersonDetail()">
       <nav class="navbar navbar-dark bg-dark" id="nav-title">
-            <h1 class="text-center" id="title"><i class="fas fa-clinic-medical"></i> Scheda Paziente</h1>
+            <h1 class="text-center" id="h1-title"><i class="fas fa-clinic-medical"></i> Scheda Paziente</h1>
       </nav>
-      <table class="table table-striped" id="info">
-            <tbody>
-                  <tr>
-                        <td class="text-right"><i class="fas fa-signature"></i> Nome</td>
-                        <td>
-                              <input class="text-left" type="text" class="form-control" readonly>
-                        </td>
-                  </tr>
-                  <tr>
-                        <td class="text-right"><i class="fas fa-signature"></i> Cognome</td>
-                        <td>
-                              <input class="text-left" type="text" class="form-control" readonly>
-                        </td>
-                  </tr>
-                  <tr>
-                        <td class="text-right"><i class="fas fa-signature"></i> Codice Fiscale</td>
-                        <td>
-                              <input class="text-left" type="text" class="form-control" readonly>
-                        </td>
-                  </tr>
-                  <tr>
-                        <td class="text-right"><i class="fas fa-phone"></i> Telefono</td>
-                        <td>
-                                <input class="text-left" type="text" class="form-control" readonly>
-                        </td>
-                  </tr>
-                  <tr>
-                        <td class="text-right"><i class="fas fa-baby-carriage"></i> Luogo di Nascita</td>
-                        <td>
-                              <input class="text-left" type="text" class="form-control" readonly>
-                        </td>
-                  </tr>
-                  <tr>
-                        <td class="text-right"><i class="fas fa-birthday-cake"></i> Data di Nascita</td>
-                        <td>
-                              <input class="text-left" type="text" class="form-control" readonly>
-                        </td>
-                  </tr>
-                  <tr>
-                        <td class="text-right"><i class="fas fa-tint"></i> Gruppo Sanguigno</td>
-                        <td>
-                              <input class="text-left" type="text" class="form-control" readonly>
-                        </td>
-                  </tr>
-            </tbody>
-      </table>
-      <p id="storico" class="text-center">Storico Paziente</p>
-      <textarea class="form-control form-control-center" id="area" name="storico" readonly></textarea>
+      <section id="section-info">
+            <table class="table table-striped" id="info">
+                  <tbody>
+                        <tr>
+                              <td class="text-right"><i class="fas fa-signature"></i> Nome</td>
+                              <td>
+                                    <input class="text-left" type="text" class="form-control" readonly>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td class="text-right"><i class="fas fa-signature"></i> Cognome</td>
+                              <td>
+                                    <input class="text-left" type="text" class="form-control" readonly>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td class="text-right"><i class="fas fa-signature"></i> Codice Fiscale</td>
+                              <td>
+                                    <input class="text-left" type="text" class="form-control" readonly>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td class="text-right"><i class="fas fa-phone"></i> Telefono</td>
+                              <td>
+                                    <input class="text-left" type="text" class="form-control" readonly>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td class="text-right"><i class="fas fa-baby-carriage"></i> Luogo di Nascita</td>
+                              <td>
+                                    <input class="text-left" type="text" class="form-control" readonly>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td class="text-right"><i class="fas fa-birthday-cake"></i> Data di Nascita</td>
+                              <td>
+                                    <input class="text-left" type="text" class="form-control" readonly>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td class="text-right"><i class="fas fa-tint"></i> Gruppo Sanguigno</td>
+                              <td>
+                                    <input class="text-left" type="text" class="form-control" readonly>
+                              </td>
+                        </tr>
+                  </tbody>
+            </table>
+            <p id="storico" class="text-center">Storico Paziente</p>
+            <textarea class="form-control form-control-center" id="area" name="storico" readonly></textarea>
+      </section>
 </body>
 
 </html>
