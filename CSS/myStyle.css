@@ -55,3 +55,8 @@ i#edit{
 a{
     text-decoration: none;
 }
+div#edit{
+    width: 800px;
+    height: 500px;
+    margin: auto;
+}

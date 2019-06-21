@@ -38,16 +38,32 @@
     <title>Edit</title>
 </head>
 <body>
-    <form class="form-inline">
-        <label class="sr-only" for="inlineFormInputName2">Nome</label>
-        <input readonly type="text" class="form-control mb-2 mr-sm-2"  placeholder="Nome">
-        <label class="sr-only" for="inlineFormInputName2">Cognome</label>
-        <input readonly type="text" class="form-control mb-2 mr-sm-2"  placeholder="Cognome">
-    </form>
-    <form class="form-inline">
-        <label class="sr-only" for="inlineFormInputName2">Codice Fiscale</label>
-        <input readonly type="text" class="form-control mb-2 mr-sm-2"  placeholder="Cod.Fisc">
-        <button type="submit" class="btn btn-primary">Salva</button>
-    </form>
+    <div id="edit">
+        <form class="text-center">
+            <label for="name">Nome</label>
+            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Nome">
+            <label for="inlineFormInputName2">Cognome</label>
+            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Cognome">
+        </form>
+        <form class="text-center">
+            <label for="inlineFormInputName2">Codice Fiscale</label>
+            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Cod.Fisc">
+            <label for="inlineFormInputName2">Telefono</label>
+            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Telefono">
+        </form>
+        <form class="text-center">
+            <label for="inlineFormInputName2">Luogo di Nascita</label>
+            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Luogo di Nascita">
+            <label for="inlineFormInputName2">Data di Nascita</label>
+            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Data di Nascita">
+        </form>
+        <form class="text-center">
+            <label for="inlineFormInputName2">Gruppo Sanguigno</label>
+            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Gruppo Sanguigno">
+        </form>
+        <form class="text-center">
+            <button type="submit" class="btn btn-primary center-block">Salva</button>
+        </form>
+</div>
 </body>
 </html>
