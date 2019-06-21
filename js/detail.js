@@ -264,7 +264,7 @@ function displayInfoTable(user) {
             </td>
         </tr>
         <tr>
-            <td class="text-right"><i class="fas fa-baby-carriage"></i> Luogo di Nascita</td>
+            <td class="text-right"><i class="fas fa-map-marked-alt"></i> Luogo di Nascita</td>
             <td>
                 <input class="text-left" type="text" class="form-control" readonly value="${user.birth_place}">
             </td>
