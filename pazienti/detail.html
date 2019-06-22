@@ -44,7 +44,7 @@
       <nav class="navbar navbar-dark bg-dark" id="nav-title">
             <h1 class="text-center" id="h1-title">
                   <a href="/index.html"><i id="home" class="fas fa-clinic-medical" title="Home" ></i></a>
-                  <a href="/pazienti/edit.html" target="_blank"><i id="edit" class="fas fa-edit" title="Edit"></i></a>
+                  <a href="#ModalEdit"><i id="icon-edit" class="fas fa-edit" data-toggle="modal" data-target="#ModalEdit"></i></a>
             Scheda Paziente</h1>
       </nav>
       <section id="section-info">
@@ -97,6 +97,44 @@
             <p id="storico" class="text-center">Storico Paziente</p>
             <textarea class="form-control form-control-center" id="area" name="storico" readonly></textarea>
       </section>
+
+      <!-- Modal Edit -->
+<div id="ModalEdit" class="modal fade">
+            <div class="modal-dialog- modal-dialog-centered" role="document"> <!-- Da provare anche "modal-dialog-lg" -->
+                <div class="modal-content ">
+                    <div class="modal-body">
+                        <nav class="navbar navbar-dark bg-dark" id="nav-title">
+                                <h1 class="text-center" id="h1-title">Edit Paziente</h1>
+                        </nav>
+                        <form class="text-center">
+                            <label for="name">Nome</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Nome">
+                            <label for="inlineFormInputName2">Cognome</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Cognome">
+                        </form>
+                        <form class="text-center">
+                            <label for="inlineFormInputName2">Codice Fiscale</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Cod.Fisc">
+                            <label for="inlineFormInputName2">Telefono</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Telefono">
+                        </form>
+                        <form class="text-center">
+                            <label for="inlineFormInputName2">Luogo di Nascita</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Luogo di Nascita">
+                            <label for="inlineFormInputName2">Data di Nascita</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Data di Nascita">
+                        </form>
+                        <form class="text-center">
+                            <label for="inlineFormInputName2">Gruppo Sanguigno</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2"  placeholder="Gruppo Sanguigno">
+                        </form>
+                        <form class="text-center">
+                            <button type="submit" class="btn btn-primary center-block">Salva</button>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 </body>
 
 </html>
