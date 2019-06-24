@@ -258,7 +258,7 @@ function displayInfoTable(user) {
             </td>
         </tr>
         <tr>
-            <td class="text-right"><i class="fas fa-phone"></i> Telefono</td>
+            <td class="text-right"><i class="fas fa-phone fa-rotate-90"></i> Telefono</td>
             <td>
                 <input class="text-left" type="text" class="form-control" readonly value="${user.phone}">
             </td>

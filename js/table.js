@@ -25,9 +25,14 @@ async function addTablePerson(form,event) {
     Array.from(form.querySelectorAll('input')).forEach(field => {
         field.classList.remove('has-error');
     })
-    if(!newPerson.surname || newPerson.surname === '') {
+    if(!newPerson.surname || newPerson.surname.trim() === '') {
         form.querySelector('[name="surname"]').classList.add('has-error');
         bootbox.alert('Il cognome è obbligatorio!');
+        return;
+    }
+    if(!newPerson.codice_fiscale || newPerson.codice_fiscale.trim() === '') {
+        form.querySelector('[name="codice_fiscale"]').classList.add('has-error');
+        bootbox.alert('Il codice fiscale è obbligatorio!');
         return;
     }
 
