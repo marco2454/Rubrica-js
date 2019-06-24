@@ -2,33 +2,13 @@
 let user;
 let isEditing = false;
 
-// passo dalla vista di modifica alla vista di dettaglio (e viceversa)
-function toggleEdit() {
-    const sectionInfoElement = document.querySelector('#info');
-    const editElement = document.querySelector('#edit');
-    const form = document.querySelector('#edit form');
-
-    if (isEditing) {
-        // Ricompilo i campi del form
-        fillPersonFormFromObject(form, user);
-
-        sectionInfoElement.style.display = 'block';
-        editElement.style.display = 'none';
-    }
-    else {
-        editElement.style.display = 'block';
-        sectionInfoElement.style.display = 'none';
-    }
-    isEditing = !isEditing;
-}
-
 // GET USER BY ID
 async function getPersonDetail() {
     user = null;
     const id = getParamByKey('id');
     // const loaderElement = document.querySelector('#loader'); Aggiungere
     const sectionInfoElement = document.querySelector("#section-info");
-    console.log(sectionInfoElement);
+
     const tableInfoElement = document.querySelector('#info');
 
     if (!id || isNaN(parseInt(id))) {
@@ -49,39 +29,34 @@ async function getPersonDetail() {
     }
 
     rebuildUiAndForm();
+
+    const modalInfoElement = document.querySelector("#modal-info");
+
+    modalInfoElement.innerHTML = '';
+
+    modalInfoElement.innerHTML += displayInfoModal(user);
 }
 
 // SAVE USER
-// async function savePersonDetail(form, event) {
-//     event.preventDefault();
+async function savePersonDetail(form, event) {
+    event.preventDefault();
 
-//     const loaderElement = document.querySelector('#loader');
-//     const sectionInfoElement = document.querySelector('#info');
-//     const editElement = document.querySelector('#edit');
+    const sectionInfoElement = document.querySelector('#section-info');
 
-//     loaderElement.style.display = 'block';
-//     editElement.style.display = 'none';
+    updatedUser = createObjectFromForm(form);
 
-//     updatedUser = {
-//         ...createObjectFromForm(form),
-//         contacts: getChildrenItemFromForm('contacts'),
-//         hobbies: getChildrenItemFromForm('hobbies')
-//     };
+    // updatedUser = Object.assign({},createObjectFromForm(form));
+    // updatedUser = Object.assign({},{id: 1, name: 'Daniel'}, {id:3}); // {id:3, name: 'Daniel'}
 
-//     user = await updateUserFromApi(updatedUser);
+    user = await updateUserFromApi(updatedUser);
 
-//     loaderElement.style.display = 'none';
-//     sectionInfoElement.style.display = 'block';
+    if (!user) {
+        sectionInfoElement.innerHTML = '<h1>nessuna persona</h1>';
+        return;
+    }
 
-//     if (!user) {
-//         sectionInfoElement.innerHTML = '<h1>nessuna persona</h1>';
-//         return;
-//     }
-
-//     toggleEdit();
-
-//     rebuildUiAndForm();
-// }
+    rebuildUiAndForm();
+}
 
 
 // REBUILD UI and FORM
@@ -284,6 +259,34 @@ function displayInfoTable(user) {
     </tbody>
     `
 }
+
+
+//Stampa Informazioni nel modal
+function displayInfoModal(user) {
+    return `
+    <form onsubmit="return savePersonDetail(this,event)">
+        <input name="id" type="hidden" value="${user.id}">
+        <label for="name">Nome</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.name}">
+        <label for="inlineFormInputName2">Cognome</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.surname}">
+        <label for="inlineFormInputName2">Codice Fiscale</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.codice_fiscale}">
+        <label for="inlineFormInputName2">Telefono</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.phone}">
+        <label for="inlineFormInputName2">Luogo di Nascita</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.birth_place}">
+        <label for="inlineFormInputName2">Data di Nascita</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.birth_date}">
+        <label for="inlineFormInputName2">Gruppo Sanguigno</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.blood}">
+        <button type="submit" class="btn btn-success">
+            Salva
+        </button>
+    </form>
+    `
+}
+
 
 
 // CONTATTI

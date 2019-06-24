@@ -101,13 +101,13 @@
       </section>
 
       <!-- Modal Edit -->
-      <div id="ModalEdit" class="modal fade">
+      <div id="ModalEdit" class="modal fade" onload="displayInfoModal()">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
                         <h2>Edit Paziente</h2>
                         <hr />
-                        <form>
+                        <form id="modal-info" onsubmit="return savePersonDetail(this,event)">
                               <label for="name">Nome</label>
                               <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  placeholder="Nome">
                               <label for="inlineFormInputName2">Cognome</label>
