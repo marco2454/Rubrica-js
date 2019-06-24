@@ -10,7 +10,6 @@ async function getTablePersons() {
     tableTbody.innerHTML = '';
     users.forEach(function (user) {
         tableTbody.innerHTML += printTableRowTemplate(user);
-        // console.log(user);
     });
 }
 
@@ -49,12 +48,6 @@ async function addTablePerson(form,event) {
 
 // DELETE USER
 async function removeTablePerson(userId) {
-//    const hasConfirmed = confirm(`Sei sicuro di voler eliminare la persona con ID = ${userId}?`);
-    
-    // const hasConfirmed = bootbox.confirm(`Sei sicuro di voler eliminare la persona con ID = ${userId}?`, function(result){ 
-    //     console.log('This was logged in the callback: ' + result); 
-    // });
-    
     let hasConfirmed = false;
 
     bootbox.confirm({
@@ -132,6 +125,6 @@ function printTableRowTemplate(user){
         <td>${user.name}</td>
         <td>${user.surname}</td>
         <td>${user.codice_fiscale}</td>
-        <td><span class="icon-delete"><i class="fas fa-edit"></i> <i class="fa fa-trash" onclick="removeTablePerson(${user.id})"></i></span></td>
+        <td></i> <i class="fa fa-trash" onclick="removeTablePerson(${user.id})"></i></span></td>
     </tr>`
 }
