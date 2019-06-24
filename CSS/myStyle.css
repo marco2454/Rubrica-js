@@ -47,11 +47,6 @@ i#home{
     color: white;
 }
 
-i#edit{
-    text-decoration: none;
-    color: white;
-}
-
 a{
     text-decoration: none;
 }
@@ -62,4 +57,7 @@ div#edit{
 }
 #icon-edit{
     color: white;
+}
+.edit-modal{
+    padding-bottom: 15px; 
 }
