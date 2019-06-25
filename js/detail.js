@@ -1,6 +1,7 @@
 // creo una variabile globale user dove salvare l'utente corrente
 let user;
-let isEditing = false;
+let visits = [];
+let lastVisitId = 0;
 
 // GET USER BY ID
 async function getPersonDetail() {
@@ -19,6 +20,14 @@ async function getPersonDetail() {
     }
 
     user = await getUserByIdFromApi(id);
+    visits = user.visits;
+    if (!visits || visits.length === 0) {
+        let tableVisitsTbody = document.querySelector('#visits-table tbody');
+        tableVisitsTbody.innerHTML = '<tr><td colspan="5">nessuna visita</td></tr>';
+    }else{
+        let lastVisit = visits[visits.length-1];
+        lastVisitId = lastVisit.id;    
+    }
 
     // loaderElement.style.display = 'none'; Aggiungere
     // tableInfoElement.style.display = 'block';
@@ -29,12 +38,6 @@ async function getPersonDetail() {
     }
 
     rebuildUiAndForm();
-
-    const formInfoElement = document.querySelector("#form-edit");
-    console.log(formInfoElement);
-    formInfoElement.innerHTML = '';
-
-    formInfoElement.innerHTML += displayInfoModal(user);
 }
 
 // SAVE USER
@@ -44,6 +47,11 @@ async function savePersonDetail(form, event) {
     const sectionInfoElement = document.querySelector('#section-info');
 
     updatedUser = createObjectFromForm(form);
+
+    updatedUser = { 
+        ...createObjectFromForm(form),
+        visits: visits 
+    };
 
     // updatedUser = Object.assign({},createObjectFromForm(form));
     // updatedUser = Object.assign({},{id: 1, name: 'Daniel'}, {id:3}); // {id:3, name: 'Daniel'}
@@ -98,40 +106,38 @@ function rebuildUiAndForm() {
     tableInfoElement.innerHTML = '';
 
     tableInfoElement.innerHTML += displayInfoTable(user);
+
+    //Riempie il form del modale della modifica del paziente
+    const formInfoElement = document.querySelector("#form-edit");
+    formInfoElement.innerHTML = '';
+    formInfoElement.innerHTML += displayInfoModal(user);
+
+    //Riempie la tabella delle visite
+    if (!visits || visits.length === 0) {
+        return;
+    }else{
+        const tableTbody = document.querySelector('#visits-table tbody');
+        visits.forEach(function (visits) {
+            tableTbody.innerHTML += printTableVisits(visits);
+        });
+    }
 }
 
 // CREATE VISIT
-async function addTablePerson(form, event) {
+async function addTableVisit(form, event) {
     event.preventDefault();
-    const tableTbody = document.querySelector('#table tbody');
+    const tableTbody = document.querySelector('#visits-table tbody');
 
-    let newPerson = createObjectFromForm(form);
+    let newVisit = createObjectFromForm(form);
+    newVisit = Object.assign({id: (lastVisitId+1)}, newVisit); 
+    visits.push(newVisit);
 
-    // Gestione degli errori
-    Array.from(form.querySelectorAll('input')).forEach(field => {
-        field.classList.remove('has-error');
-    })
+    updatedUser = { 
+        ...user, 
+        visits: visits 
+    };
 
-    if ((!newPerson.surname || newPerson.surname.trim() === '') && (!newPerson.codice_fiscale || newPerson.codice_fiscale.trim() === '')) {
-        form.querySelector('[name="surname"]').classList.add('has-error');
-        form.querySelector('[name="codice_fiscale"]').classList.add('has-error');
-        bootbox.alert('Il cognome e il codice fiscali sono obbligatori!');
-        return;
-    }
-
-    if (!newPerson.surname || newPerson.surname.trim() === '') {
-        form.querySelector('[name="surname"]').classList.add('has-error');
-        bootbox.alert('Il cognome è obbligatorio!');
-        return;
-    }
-
-    if (!newPerson.codice_fiscale || newPerson.codice_fiscale.trim() === '') {
-        form.querySelector('[name="codice_fiscale"]').classList.add('has-error');
-        bootbox.alert('Il codice fiscale è obbligatorio!');
-        return;
-    }
-
-    const user = await createUserFromApi(newPerson);
+    user = await updateUserFromApi(updatedUser);
 
     Array.from(form.querySelectorAll('input')).forEach(field => {
         field.value = '';
@@ -142,7 +148,21 @@ async function addTablePerson(form, event) {
         return;
     }
 
-    sectionTableTbody.innerHTML += printTableRowTemplate(user);
+    tableTbody.innerHTML += printTableVisits(user);
+}
+
+async function removeVisit(td) {
+    visits.slice(lastVisitId, (lastVisitId + 1));
+    console.log(visits);
+    // updatedUser = { 
+    //     ...user, 
+    //     visits: visits 
+    // };
+
+    // user = await updateUserFromApi(updatedUser);
+    
+    let tr = td.parentNode;
+    tr.remove();
 }
 
 //Stampa Informazioni
@@ -222,6 +242,16 @@ function displayInfoModal(user) {
     `
 }
 
+//Stampa tabella per le visite
+function printTableVisits(visits) {
+    return `<tr id="row${visits.id}">
+        <td class="visit-id">${visits.id}</td>
+        <td>${visits.date}</td>
+        <td>${visits.details}</td>
+        <td><span class="icon-edit"><i class="fas fa-edit" data-toggle="modal" data-target="#ModalEditVisita"></i></span></td>
+        <td><span class="icon-delete" onclick="removeVisit(this.parentNode)"><i class="fa fa-trash"></i></span></td>
+    </tr>`
+}
 
 
 // CONTATTI

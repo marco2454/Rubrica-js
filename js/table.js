@@ -1,3 +1,6 @@
+//Variabile locale visits
+let visits= [];
+
 // GET USERS
 async function getTablePersons() {
     const tableTbody = document.querySelector('#table tbody');
@@ -19,7 +22,10 @@ async function addTablePerson(form, event) {
     event.preventDefault();
     const tableTbody = document.querySelector('#table tbody');
 
-    let newPerson = createObjectFromForm(form);
+    let newPerson = { 
+        ...createObjectFromForm(form),
+        visits: visits 
+    };
 
     // Gestione degli errori
     Array.from(form.querySelectorAll('input')).forEach(field => {
@@ -56,7 +62,7 @@ async function addTablePerson(form, event) {
         return;
     }
 
-    sectionTableTbody.innerHTML += printTableRowTemplate(user);
+    tableTbody.innerHTML += printTableRowTemplate(user);
 }
 
 
@@ -139,6 +145,6 @@ function printTableRowTemplate(user) {
         <td>${user.name}</td>
         <td>${user.surname}</td>
         <td>${user.codice_fiscale}</td>
-        <td></i> <i class="fa fa-trash" onclick="removeTablePerson(${user.id})"></i></span></td>
+        <td><span class="icon-delete"><i class="fa fa-trash" onclick="removeTablePerson(${user.id})"></i></span></td>
     </tr>`
 }

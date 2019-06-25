@@ -105,7 +105,7 @@
                   </tbody>
             </table>
 
-            <!-- Script visite -->
+            <!-- Visite -->
 
             <nav class="navbar navbar-expand-lg  justify-content-between navbar-light"
                   style="background-color: #e9ecef;">
@@ -129,7 +129,7 @@
                         </form>
                   </div>
             </nav>
-            <table id="table" class="table table-striped table-bordered table-hover text-center">
+            <table id="visits-table" class="table table-striped table-bordered table-hover text-center">
                   <thead class="thead-light">
                         <tr>
                               <th scope="col">#</th>
@@ -155,21 +155,15 @@
                                           <div class="form-group">
                                                 <label class="control-label">Data</label>
                                                 <div>
-                                                      <input type="date" class="form-control input-lg" name="name" value="">
+                                                      <input type="date" class="form-control input-lg" name="date" value="">
                                                 </div>
                                           </div>
                                           <div class="form-group">
                                                 <label class="control-label">Dettagli</label>
                                                 <div>
-                                                      <input type="text" class="form-control input-lg" name="surname" value="">
+                                                      <input type="text" class="form-control input-lg" name="details" value="">
                                                 </div>
                                           </div>
-                                          <!-- <div class="form-group">
-                                                <label class="control-label">Codice Fiscale</label>
-                                                <div>
-                                                      <input type="text" class="form-control input-lg" name="codice_fiscale" value="">
-                                                </div>
-                                          </div> -->
                                           <div class="form-group">
                                                 <div>
                                                       <button type="submit" class="btn btn-success">
@@ -191,7 +185,7 @@
                         <div class="modal-body">
                               <h2>Edit Visita</h2>
                               <hr />
-                              <form onsubmit="return savePersonDetail(this,event)" id="form-edit">
+                              <form onsubmit="return savePersonDetail(this,event)" id="form-edit-visita">
                                     <div class="form-group">
                                           <label for="date">Data</label>
                                           <div>
