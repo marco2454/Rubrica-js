@@ -30,11 +30,11 @@ async function getPersonDetail() {
 
     rebuildUiAndForm();
 
-    const modalInfoElement = document.querySelector("#modal-info");
+    const formInfoElement = document.querySelector("#form-edit");
+    console.log(formInfoElement);
+    formInfoElement.innerHTML = '';
 
-    modalInfoElement.innerHTML = '';
-
-    modalInfoElement.innerHTML += displayInfoModal(user);
+    formInfoElement.innerHTML += displayInfoModal(user);
 }
 
 // SAVE USER
@@ -264,22 +264,22 @@ function displayInfoTable(user) {
 //Stampa Informazioni nel modal
 function displayInfoModal(user) {
     return `
-    <form onsubmit="return savePersonDetail(this,event)">
+    <form onsubmit="return savePersonDetail(this,event)" id="form-edit">
         <input name="id" type="hidden" value="${user.id}">
         <label for="name">Nome</label>
-        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.name}">
+        <input type="text" class="form-control mb-2 mr-sm-2" class="input-modal" name="name" value="${user.name}">
         <label for="inlineFormInputName2">Cognome</label>
-        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.surname}">
+        <input type="text" class="form-control mb-2 mr-sm-2" class="input-modal" name="surname" value="${user.surname}">
         <label for="inlineFormInputName2">Codice Fiscale</label>
-        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.codice_fiscale}">
+        <input type="text" class="form-control mb-2 mr-sm-2" class="input-modal" name="codice_fiscale" value="${user.codice_fiscale}">
         <label for="inlineFormInputName2">Telefono</label>
-        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.phone}">
+        <input type="text" class="form-control mb-2 mr-sm-2" class="input-modal" name="phone" value="${user.phone}">
         <label for="inlineFormInputName2">Luogo di Nascita</label>
-        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.birth_place}">
+        <input type="text" class="form-control mb-2 mr-sm-2" class="input-modal" name="birth_place" value="${user.birth_place}">
         <label for="inlineFormInputName2">Data di Nascita</label>
-        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.birth_date}">
+        <input type="text" class="form-control mb-2 mr-sm-2" class="input-modal" name="birth_date" value="${user.birth_date}">
         <label for="inlineFormInputName2">Gruppo Sanguigno</label>
-        <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"  value="${user.blood}">
+        <input type="text" class="form-control mb-2 mr-sm-2" class="input-modal" name="blood" value="${user.blood}">
         <button type="submit" class="btn btn-success">
             Salva
         </button>

@@ -196,54 +196,47 @@
                         <div class="modal-body">
                               <h2>Edit Paziente</h2>
                               <hr />
-                              <form>
+                              <form onsubmit="return savePersonDetail(this,event)" id="form-edit">
                                     <div class="form-group">
-                                          <label for="name">Nome</label>+
+                                          <label for="name">Nome</label>
                                           <div>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"
-                                                      placeholder="Nome">
+                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal" name="name" placeholder="Nome">
                                           </div>
                                     </div>
                                     <div class="form-group">
                                           <label for="inlineFormInputName2">Cognome</label>
                                           <div>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"
-                                                      placeholder="Cognome">
+                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal" name="surname" placeholder="Cognome">
                                           </div>
                                     </div>
                                     <div class="form-group">
                                           <label for="inlineFormInputName2">Codice Fiscale</label>
                                           <div>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"
-                                                      placeholder="Cod.Fisc">
+                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal" name="codice_fiscale" placeholder="Cod.Fisc">
                                           </div>
                                     </div>
                                     <div class="form-group">
                                           <label for="inlineFormInputName2">Telefono</label>
                                           <div>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"
-                                                      placeholder="Telefono">
+                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal" name="phone" placeholder="Telefono">
                                           </div>
                                     </div>
                                     <div class="form-group">
                                           <label for="inlineFormInputName2">Luogo di Nascita</label>
                                           <div>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"
-                                                      placeholder="Luogo di Nascita">
+                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal" name="birth_place" placeholder="Luogo di Nascita">
                                           </div>
                                     </div>
                                     <div class="form-group">
                                           <label for="inlineFormInputName2">Data di Nascita</label>
                                           <div>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"
-                                                      placeholder="Data di Nascita">
+                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal" name="birth_date" placeholder="Data di Nascita">
                                           </div>
                                     </div>
                                     <div class="form-group">
                                           <label for="inlineFormInputName2">Gruppo Sanguigno</label>
                                           <div>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal"
-                                                      placeholder="Gruppo Sanguigno">
+                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal" name="blood" placeholder="Gruppo Sanguigno">
                                           </div>
                                     </div>
                                     <div class="form-group">
