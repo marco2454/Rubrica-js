@@ -98,141 +98,52 @@ function rebuildUiAndForm() {
     tableInfoElement.innerHTML = '';
 
     tableInfoElement.innerHTML += displayInfoTable(user);
-
-
-    // // Aggiorno la UI con i dati della persona
-    // updatePersonUiFromObject(sectionInfoElement, user);
-
-    // // Compilo i campi del form
-    // fillPersonFormFromObject(formElement, user);
 }
 
-// VIEW
-// function updatePersonUiFromObject(element, person) {
-//     Object.keys(person).forEach((key) => {
-//         const value = person[key];
+// CREATE VISIT
+async function addTablePerson(form, event) {
+    event.preventDefault();
+    const tableTbody = document.querySelector('#table tbody');
 
-//         if (value && typeof value === 'object') {
-//             // Gestisco gli array
-//             if (Array.isArray(value)) {
-//                 updateListUi(element.querySelector(`#value-${key}`), value, key)
-//                 return;
-//             }
+    let newPerson = createObjectFromForm(form);
 
-//             // Gestisco gli oggetti (non con questa struttura dati)
-//             if (!Array.isArray(value)) {
-//                 // console.log('è un oggetto')
-//                 return;
-//             }
-//         }
-//         else {
-//             // Gestisco i valori primitivi
-//             const el = element.querySelector(`#value-${key}`);
-//             if (el) {
-//                 el.innerHTML = value ? `${value.replace('\n', '<br/>')}` : null;
-//             }
-//         }
-//     });
+    // Gestione degli errori
+    Array.from(form.querySelectorAll('input')).forEach(field => {
+        field.classList.remove('has-error');
+    })
 
-//     // Gestisco l'immagine
-//     const pictureElement = element.querySelector(`#value-picture`);
-//     const pictureValue = person['picture']
+    if ((!newPerson.surname || newPerson.surname.trim() === '') && (!newPerson.codice_fiscale || newPerson.codice_fiscale.trim() === '')) {
+        form.querySelector('[name="surname"]').classList.add('has-error');
+        form.querySelector('[name="codice_fiscale"]').classList.add('has-error');
+        bootbox.alert('Il cognome e il codice fiscali sono obbligatori!');
+        return;
+    }
 
-//     if (pictureValue) {
-//         pictureElement.src = pictureValue;
-//         pictureElement.parentNode.style.display = 'inline-block';
-//     } else {
-//         pictureElement.parentNode.style.display = 'none';
-//     }
-// }
+    if (!newPerson.surname || newPerson.surname.trim() === '') {
+        form.querySelector('[name="surname"]').classList.add('has-error');
+        bootbox.alert('Il cognome è obbligatorio!');
+        return;
+    }
 
-// function updateListUi(element, list, type) {
-//     if (list && list.length > 0) {
-//         element.innerHTML = '';
-//     }
-//     else {
-//         element.innerHTML = 'nessuno';
-//     }
-//     list.forEach(item => {
-//         switch (type) {
-//             case 'contacts':
-//                 element.innerHTML += displayContactListUi(item);
-//                 break;
-//             case 'hobbies':
-//                 element.innerHTML += displayHobbyListUi(item);
-//                 break;
-//         }
-//     });
-// }
-// function displayContactListUi(contact) {
-//     return `
-//         <li>
-//             <label>${contact.label}</label>
-//             <a href="${contact.url}" target="_blank">${contact.value}</a>
-//         </li>`;
-// }
-// function displayHobbyListUi(hobby) {
-//     return `
-//         <li>
-//             ${hobby.icon ? `<i class="fa fa-${hobby.icon}"></i>` : `<i class="fa fa-angle-right"></i>`}
-//             <span>${hobby.value}</span>
-//         </li>`;
-// }
+    if (!newPerson.codice_fiscale || newPerson.codice_fiscale.trim() === '') {
+        form.querySelector('[name="codice_fiscale"]').classList.add('has-error');
+        bootbox.alert('Il codice fiscale è obbligatorio!');
+        return;
+    }
 
-// // FORM 
-// function fillPersonFormFromObject(formElement, user) {
-//     fillFormFromObject(formElement, user);
-//     createFieldsetFromObject('contacts', user.contacts);
-//     createFieldsetFromObject('hobbies', user.hobbies);
-// }
-// function getChildrenItemFromForm(type) {
-//     fieldSets = document.querySelectorAll(`#edit-${type} fieldset`);
-//     let children = [];
-//     if (!fieldSets) {
-//         return children;
-//     }
+    const user = await createUserFromApi(newPerson);
 
-//     fieldSets.forEach(fieldset => {
-//         let contact = createObjectFromForm(fieldset, true)
-//         children.push(contact);
-//     })
+    Array.from(form.querySelectorAll('input')).forEach(field => {
+        field.value = '';
+    });
 
-//     return children;
-// }
-// function createFieldsetFromObject(type, list) {
-//     const containerElement = document.querySelector(`#edit-${type}`);
-//     containerElement.innerHTML = '';
-//     if (list && list.length > 0) {
-//         list.forEach(item => {
-//             addFieldset(type, item);
-//         })
-//     }
-//     // aggiungo un campo vuoto da aggiungere
-//     // else {
-//     //     addFieldset(type);
-//     // }
-// }
-// function addFieldset(type, item) {
-//     const containerElement = document.querySelector(`#edit-${type}`);
 
-//     // ATTENZIONE: innerHTML sovrascrive i value! Bisogna usare appendChild
-//     // containerElement.innerHTML += displayFieldset(item,type);
+    if (!user) {
+        return;
+    }
 
-//     const element = document.createElement('div');
-//     element.innerHTML = displayFieldset(type, item);
-//     containerElement.appendChild(element);
-// }
-// function removeFieldset(fieldset) {
-//     fieldset.parentNode.removeChild(fieldset);
-// }
-// function displayFieldset(type, item) {
-//     switch (type) {
-//         case 'contacts':
-//             return displayContactFieldset(item)
-//         case 'hobbies':
-//             return displayHobbyFieldset(item)
-//     }
-// }
+    sectionTableTbody.innerHTML += printTableRowTemplate(user);
+}
 
 //Stampa Informazioni
 function displayInfoTable(user) {
