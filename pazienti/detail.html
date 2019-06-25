@@ -144,7 +144,7 @@
             </table>
 
 
-            <!-- Modal HTML Markup -->
+            <!-- Modal Aggiunta Visita -->
             <div id="ModalVisitForm" class="modal fade">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -183,6 +183,39 @@
                   </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
       </section>
+
+      <!-- Modal Edit Visita -->
+      <div id="ModalEditVisita" class="modal fade" onload="displayInfoModal()">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                        <div class="modal-body">
+                              <h2>Edit Visita</h2>
+                              <hr />
+                              <form onsubmit="return savePersonDetail(this,event)" id="form-edit">
+                                    <div class="form-group">
+                                          <label for="date">Data</label>
+                                          <div>
+                                                <input type="date" class="form-control mb-2 mr-sm-2" class="edit-modal" name="date">
+                                          </div>
+                                    </div>
+                                    <div class="form-group">
+                                          <label for="detail">Dettagli</label>
+                                          <div>
+                                                <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal" name="detail">
+                                          </div>
+                                    </div>
+                                    <div class="form-group">
+                                          <div>
+                                                <button type="submit" class="btn btn-success">
+                                                      Salva
+                                                </button>
+                                          </div>
+                                    </div>
+                              </form>
+                        </div>
+                  </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
 
       <!-- Modal Edit -->
       <div id="ModalEdit" class="modal fade" onload="displayInfoModal()">
