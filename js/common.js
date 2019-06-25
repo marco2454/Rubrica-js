@@ -14,14 +14,13 @@ function createObjectFromForm(form, useMultiple) {
     // utilizzo la funzione reduce degli array per creare l'oggetto ciclando sugli elementi
 
     return array.reduce(function (obj, el) {
-        if(el.name) {
-            if(el.name.indexOf('.') !== -1) {
+        if (el.name) {
+            if (el.name.indexOf('.') !== -1) {
                 // sto leggendo un campo multiplo
-                if(useMultiple) {
-                    obj[el.name.split('.')[1]] = el.value;    
+                if (useMultiple) {
+                    obj[el.name.split('.')[1]] = el.value;
                 }
-            }
-            else {
+            } else {
                 // sto leggendo un campo singolo
                 obj[el.name] = el.value;
             }
@@ -33,7 +32,7 @@ function createObjectFromForm(form, useMultiple) {
 /**
  * Compila un form partendo da un oggetto javascript
  */
-function fillFormFromObject(formElement,obj) {
+function fillFormFromObject(formElement, obj) {
     // trovo tutti i figli di form che sono dei campi (field)
     // NB: querySelectorAll restituisce una lista di nodi che non è esattamente un array!
     const fieldList = formElement.querySelectorAll('input,select,textarea');
@@ -70,17 +69,17 @@ function parseQueryString() {
     var objURL = {};
 
     str.replace(
-        new RegExp( "([^?=&]+)(=([^&]*))?", "g" ),
-        function( $0, $1, $2, $3 ){
-            objURL[ $1 ] = $3;
+        new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+        function ($0, $1, $2, $3) {
+            objURL[$1] = $3;
         }
     );
     return objURL;
 };
 
 /**
-* Legge il valore di un parametro
-*/
+ * Legge il valore di un parametro
+ */
 function getParamByKey(key) {
     const params = parseQueryString();
     return params[key];

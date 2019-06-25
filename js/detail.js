@@ -72,7 +72,7 @@ function rebuildUiAndForm() {
     h1Element.innerHTML = `<a href="/index.html"><i id="home" class="fas fa-clinic-medical" style="float: left;" title="Home"></i></a> Scheda Paziente |  ${user.name} ${user.surname}<i id="icon-edit" class="fas fa-edit" data-toggle="modal" style="float: right;" data-target="#ModalEdit"></i>`;
 
     tableInfoElement.innerHTML = '';
-    
+
     tableInfoElement.innerHTML += displayInfoTable(user);
 
 
