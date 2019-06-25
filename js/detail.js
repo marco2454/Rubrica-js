@@ -48,6 +48,30 @@ async function savePersonDetail(form, event) {
     // updatedUser = Object.assign({},createObjectFromForm(form));
     // updatedUser = Object.assign({},{id: 1, name: 'Daniel'}, {id:3}); // {id:3, name: 'Daniel'}
 
+    // Gestione degli errori
+    Array.from(form.querySelectorAll('input')).forEach(field => {
+        field.classList.remove('has-error');
+    })
+
+    if ((!updatedUser.surname || updatedUser.surname.trim() === '') && (!updatedUser.codice_fiscale || updatedUser.codice_fiscale.trim() === '')) {
+        form.querySelector('[name="surname"]').classList.add('has-error');
+        form.querySelector('[name="codice_fiscale"]').classList.add('has-error');
+        bootbox.alert('Il cognome e il codice fiscali sono obbligatori!');
+        return;
+    }
+
+    if (!updatedUser.surname || updatedUser.surname.trim() === '') {
+        form.querySelector('[name="surname"]').classList.add('has-error');
+        bootbox.alert('Il cognome è obbligatorio!');
+        return;
+    }
+
+    if (!updatedUser.codice_fiscale || updatedUser.codice_fiscale.trim() === '') {
+        form.querySelector('[name="codice_fiscale"]').classList.add('has-error');
+        bootbox.alert('Il codice fiscale è obbligatorio!');
+        return;
+    }
+
     user = await updateUserFromApi(updatedUser);
 
     if (!user) {

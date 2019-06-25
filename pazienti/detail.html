@@ -117,7 +117,7 @@
 
                   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                         <button type="button" class="btn btn-outline-dark" data-toggle="modal"
-                              data-target="#ModalLoginForm">
+                              data-target="#ModalVisitForm">
                               <i class="far fa-calendar-plus"></i> Aggiungi
                         </button>
                         <p style="width: 100%" id="storico" class="text-center"><i><i class="far fa-list-alt"></i></i>
@@ -145,36 +145,31 @@
 
 
             <!-- Modal HTML Markup -->
-            <div id="ModalLoginForm" class="modal fade">
+            <div id="ModalVisitForm" class="modal fade">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                               <div class="modal-body">
-                                    <h2>Nuovo Paziente</h2>
+                                    <h2>Nuova Visita</h2>
                                     <hr />
-                                    <form role="form" method="POST" action=""
-                                          onsubmit="return addTablePerson(this,event)">
-                                          <input type="hidden" name="_token" value="">
+                                    <form role="form" method="POST" action="" onsubmit="return addTableVisit(this,event)">
                                           <div class="form-group">
-                                                <label class="control-label">Nome</label>
+                                                <label class="control-label">Dettagli</label>
                                                 <div>
-                                                      <input type="text" class="form-control input-lg" name="name"
-                                                            value="">
+                                                      <input type="text" class="form-control input-lg" name="name" value="">
                                                 </div>
                                           </div>
                                           <div class="form-group">
-                                                <label class="control-label">Cognome</label>
+                                                <label class="control-label">Data</label>
                                                 <div>
-                                                      <input type="text" class="form-control input-lg" name="surname"
-                                                            value="">
+                                                      <input type="text" class="form-control input-lg" name="surname" value="">
                                                 </div>
                                           </div>
-                                          <div class="form-group">
+                                          <!-- <div class="form-group">
                                                 <label class="control-label">Codice Fiscale</label>
                                                 <div>
-                                                      <input type="text" class="form-control input-lg"
-                                                            name="codice_fiscale" value="">
+                                                      <input type="text" class="form-control input-lg" name="codice_fiscale" value="">
                                                 </div>
-                                          </div>
+                                          </div> -->
                                           <div class="form-group">
                                                 <div>
                                                       <button type="submit" class="btn btn-success">
