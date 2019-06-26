@@ -151,8 +151,42 @@ async function addTableVisit(form, event) {
     tableTbody.innerHTML += printTableVisits(user);
 }
 
+//Modifica Visita
+async function EditVisit(form, event) {
+    event.preventDefault();
+    const tableTbody = document.querySelector('#visits-table tbody');
+
+    let newVisit = createObjectFromForm(form);
+    newVisit = Object.assign({id: (lastVisitId+1)}, newVisit); 
+    visits.push(newVisit);
+
+    updatedUser = { 
+        ...user, 
+        visits: visits 
+    };
+
+    user = await updateUserFromApi(updatedUser);
+
+    Array.from(form.querySelectorAll('input')).forEach(field => {
+        field.value = '';
+    });
+
+
+    if (!user) {
+        return;
+    }
+
+    tableTbody.innerHTML += printTableVisits(user);
+}
+
+
+//Elimina una visita
 async function removeVisit(td) {
-    visits.slice(lastVisitId, (lastVisitId + 1));
+    
+    let tr = td.parentNode;
+    let id = tr.childNodes[1].innerText;
+    
+    visits.splice((id - 1), id);
     console.log(visits);
     // updatedUser = { 
     //     ...user, 
@@ -161,7 +195,7 @@ async function removeVisit(td) {
 
     // user = await updateUserFromApi(updatedUser);
     
-    let tr = td.parentNode;
+    // console.log(tr, id);
     tr.remove();
 }
 
