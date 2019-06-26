@@ -2,6 +2,7 @@
 let user;
 let visits = [];
 let lastVisitId = 0;
+let nRow = 0;
 
 // GET USER BY ID
 async function getPersonDetail() {
@@ -117,8 +118,10 @@ function rebuildUiAndForm() {
         return;
     }else{
         const tableTbody = document.querySelector('#visits-table tbody');
+        n = 0;
         visits.forEach(function (visits) {
-            tableTbody.innerHTML += printTableVisits(visits);
+            n++;
+            tableTbody.innerHTML += printTableVisits(visits, n);
         });
     }
 }
@@ -182,18 +185,22 @@ async function EditVisit(form, event) {
 
 //Elimina una visita
 async function removeVisit(td) {
+    // let valore = visits[id];
+    // let indice = visits.indexOf(valore);
+    // console.log(`Indice: ${indice}`);
+    // console.log(visits.valueOf());
     
     let tr = td.parentNode;
     let id = tr.childNodes[1].innerText;
-    
+    // console.log(`Id: ${id}`);
     visits.splice((id - 1), id);
     console.log(visits);
-    // updatedUser = { 
-    //     ...user, 
-    //     visits: visits 
-    // };
+    updatedUser = { 
+        ...user, 
+        visits: visits 
+    };
 
-    // user = await updateUserFromApi(updatedUser);
+    user = await updateUserFromApi(updatedUser);
     
     // console.log(tr, id);
     tr.remove();
@@ -277,9 +284,9 @@ function displayInfoModal(user) {
 }
 
 //Stampa tabella per le visite
-function printTableVisits(visits) {
-    return `<tr id="row${visits.id}">
-        <td class="visit-id">${visits.id}</td>
+function printTableVisits(visits, n) {
+    return `<tr id="row${n}">
+        <td class="visit-id">${n}</td>
         <td>${visits.date}</td>
         <td>${visits.details}</td>
         <td><span class="icon-edit"><i class="fas fa-edit" data-toggle="modal" data-target="#ModalEditVisita"></i></span></td>
