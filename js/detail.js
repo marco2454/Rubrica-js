@@ -1,8 +1,6 @@
-// creo una variabile globale user dove salvare l'utente corrente
 let user;
 let visits = [];
 let lastVisitId = 0;
-let nRow = 0;
 let trDaModidicare;
 let idDaModificare;
 
@@ -10,7 +8,6 @@ let idDaModificare;
 async function getPersonDetail() {
     user = null;
     const id = getParamByKey('id');
-    // const loaderElement = document.querySelector('#loader'); Aggiungere
     const sectionInfoElement = document.querySelector("#section-info");
 
     const tableInfoElement = document.querySelector('#info');
@@ -32,9 +29,6 @@ async function getPersonDetail() {
         lastVisitId = lastVisit.id;
     }
 
-    // loaderElement.style.display = 'none'; Aggiungere
-    // tableInfoElement.style.display = 'block';
-
     if (!user) {
         sectionInfoElement.innerHTML = '<h1>nessuna persona</h1>';
         return;
@@ -55,9 +49,6 @@ async function savePersonDetail(form, event) {
         ...createObjectFromForm(form),
         visits: visits
     };
-
-    // updatedUser = Object.assign({},createObjectFromForm(form));
-    // updatedUser = Object.assign({},{id: 1, name: 'Daniel'}, {id:3}); // {id:3, name: 'Daniel'}
 
     // Gestione degli errori
     Array.from(form.querySelectorAll('input')).forEach(field => {
@@ -99,7 +90,6 @@ function rebuildUiAndForm() {
     const titleElement = document.querySelector('title');
     const tableInfoElement = document.querySelector('#info');
     const h1Element = document.querySelector('#h1-title');
-    // const formElement = document.querySelector('#edit form');
 
     // Aggiorno il titolo della pagina
     titleElement.innerHTML = `${user.surname} | Scehda Paziente`;
@@ -186,17 +176,41 @@ async function editVisit(form, event) {
 
 //Elimina una visita
 async function removeVisit(td) {
+    let hasConfirmed = false;
     let tr = td.parentNode;
     let id = tr.childNodes[1].innerText;
 
-    visits.splice((id - 1), id);
+    bootbox.confirm({
+        title: `Eliminazione`,
+        message: `Sei sicuro di voler eliminare la visita numero ${id}?`,
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> Annulla',
+                className: 'btn-danger'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Conferma',
+                className: 'btn-success'
+            }
+        },
 
-    updatedUser = {
-        ...user,
-        visits: visits
-    };
+        callback: async function (result) {
+            hasConfirmed = result;
 
-    user = await updateUserFromApi(updatedUser);
+            if (!hasConfirmed) {
+                return;
+            }
+
+            visits.splice((id - 1), id);
+        
+            updatedUser = {
+                ...user,
+                visits: visits
+            };
+        
+            user = await updateUserFromApi(updatedUser);
+        }
+    });
 }
 
 //Stampa Informazioni
