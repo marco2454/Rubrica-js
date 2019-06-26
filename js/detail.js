@@ -3,6 +3,7 @@ let user;
 let visits = [];
 let lastVisitId = 0;
 let nRow = 0;
+let trDaModidicare;
 
 // GET USER BY ID
 async function getPersonDetail() {
@@ -25,9 +26,9 @@ async function getPersonDetail() {
     if (!visits || visits.length === 0) {
         let tableVisitsTbody = document.querySelector('#visits-table tbody');
         tableVisitsTbody.innerHTML = '<tr><td colspan="5">nessuna visita</td></tr>';
-    }else{
-        let lastVisit = visits[visits.length-1];
-        lastVisitId = lastVisit.id;    
+    } else {
+        let lastVisit = visits[visits.length - 1];
+        lastVisitId = lastVisit.id;
     }
 
     // loaderElement.style.display = 'none'; Aggiungere
@@ -49,9 +50,9 @@ async function savePersonDetail(form, event) {
 
     updatedUser = createObjectFromForm(form);
 
-    updatedUser = { 
+    updatedUser = {
         ...createObjectFromForm(form),
-        visits: visits 
+        visits: visits
     };
 
     // updatedUser = Object.assign({},createObjectFromForm(form));
@@ -116,7 +117,7 @@ function rebuildUiAndForm() {
     //Riempie la tabella delle visite
     if (!visits || visits.length === 0) {
         return;
-    }else{
+    } else {
         const tableTbody = document.querySelector('#visits-table tbody');
         n = 0;
         visits.forEach(function (visits) {
@@ -132,12 +133,12 @@ async function addTableVisit(form, event) {
     const tableTbody = document.querySelector('#visits-table tbody');
 
     let newVisit = createObjectFromForm(form);
-    newVisit = Object.assign({id: (lastVisitId+1)}, newVisit); 
+    newVisit = Object.assign({ id: (lastVisitId + 1) }, newVisit);
     visits.push(newVisit);
 
-    updatedUser = { 
-        ...user, 
-        visits: visits 
+    updatedUser = {
+        ...user,
+        visits: visits
     };
 
     user = await updateUserFromApi(updatedUser);
@@ -151,21 +152,22 @@ async function addTableVisit(form, event) {
         return;
     }
 
-    tableTbody.innerHTML += printTableVisits(user);
+    tableTbody.innerHTML += printTableVisits(visits);
 }
 
 //Modifica Visita
-async function EditVisit(form, event) {
+async function editVisit(form, event) {
     event.preventDefault();
     const tableTbody = document.querySelector('#visits-table tbody');
 
-    let newVisit = createObjectFromForm(form);
-    newVisit = Object.assign({id: (lastVisitId+1)}, newVisit); 
-    visits.push(newVisit);
+    let id = trDaModidicare.childNodes[1].innerText;
 
-    updatedUser = { 
-        ...user, 
-        visits: visits 
+    let updatedVisit = createObjectFromForm(form);
+    visits[id-1] = updatedVisit;
+
+    updatedUser = {
+        ...user,
+        visits: visits
     };
 
     user = await updateUserFromApi(updatedUser);
@@ -179,29 +181,23 @@ async function EditVisit(form, event) {
         return;
     }
 
-    tableTbody.innerHTML += printTableVisits(user);
+    tableTbody.innerHTML += printTableVisits(visits);
 }
 
 
 //Elimina una visita
 async function removeVisit(td) {
-    // let valore = visits[id];
-    // let indice = visits.indexOf(valore);
-    // console.log(`Indice: ${indice}`);
-    // console.log(visits.valueOf());
-    
     let tr = td.parentNode;
     let id = tr.childNodes[1].innerText;
-    // console.log(`Id: ${id}`);
+
     visits.splice((id - 1), id);
-    console.log(visits);
-    updatedUser = { 
-        ...user, 
-        visits: visits 
+
+    updatedUser = {
+        ...user,
+        visits: visits
     };
 
     user = await updateUserFromApi(updatedUser);
-    // tr.remove();
 }
 
 //Stampa Informazioni
@@ -251,11 +247,11 @@ function displayInfoTable(user) {
             </td>
         </tr>
     </tbody>
-    `
+    `;
 }
 
 
-//Stampa Informazioni nel modal
+//Stampa Informazioni nel modal edit utente
 function displayInfoModal(user) {
     return `
     <form onsubmit="return savePersonDetail(this,event)" id="form-edit">
@@ -278,7 +274,7 @@ function displayInfoModal(user) {
             Salva
         </button>
     </form>
-    `
+    `;
 }
 
 //Stampa tabella per le visite
@@ -287,32 +283,41 @@ function printTableVisits(visits, n) {
         <td class="visit-number">${n}</td>
         <td>${visits.date}</td>
         <td>${visits.details}</td>
-        <td><span class="icon-edit"><i class="fas fa-edit" data-toggle="modal" data-target="#ModalEditVisita"></i></span></td>
+        <td><span class="icon-edit" onclick="printFormeditVisit(visits, this.parentNode)"><i class="fas fa-edit" data-toggle="modal" data-target="#ModalEditVisita"></i></span></td>
         <td><span class="icon-delete" onclick="removeVisit(this.parentNode)"><i class="fa fa-trash"></i></span></td>
-    </tr>`
+    </tr>`;
 }
 
+function printFormeditVisit(visits, td) {
+    trDaModidicare = td.parentNode;
+    console.log(trDaModidicare);
+    const formEditVisit = document.querySelector("#form-edit-visita");
+    formEditVisit.innerHTML = '';
+    formEditVisit.innerHTML += displayInfoModalVisits(visits);
+}
 
-// CONTATTI
-// function displayContactFieldset(contact) {
-//     return `
-//     <fieldset>
-//         <span class="icon" title="Elimina contatto" onclick="removeFieldset(this.parentNode)">
-//             <i class="fa fa-times"></i>
-//         </span>
-//         <input name="contact.label" placeholder="nome" value="${contact ? contact.label : ''}">
-//         <input name="contact.value" placeholder="contatto" value="${contact ? contact.value : ''}">
-//         <input name="contact.url" placeholder="url contatto" value="${contact ? contact.url : ''}">
-//     </fieldset>`;
-// }
-// HOBBIES
-// function displayHobbyFieldset(hobby) {
-//     return `
-//     <fieldset>
-//         <span class="icon" title="Elimina hobby" onclick="removeFieldset(this.parentNode)">
-//             <i class="fa fa-times"></i>
-//         </span>
-//         <input name="hobby.icon" placeholder="icon fontawesome" value="${hobby ? hobby.icon : ''}">
-//         <input name="hobby.value" placeholder="hobby" value="${hobby ? hobby.value : ''}">
-//     </fieldset>`;
-// }
+function displayInfoModalVisits(visits) {
+    return `<form onsubmit="return editVisit(this,event)" id="form-edit-visita">
+                <div class="form-group">
+                    <input name="id" type="hidden" value="${visits[0].id}">
+                    <label for="date">Data</label>
+                    <div>
+                            <input type="date" class="form-control mb-2 mr-sm-2" class="edit-modal" name="date" value="${visits[0].date}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="detail">Dettagli</label>
+                    <div>
+                            <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal" name="details" value="${visits[0].details}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                            <button type="submit" class="btn btn-success">
+                                Salva
+                            </button>
+                    </div>
+                </div>
+            </form>
+    `;
+}

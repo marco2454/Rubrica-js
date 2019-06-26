@@ -146,5 +146,5 @@ function printTableRowTemplate(user) {
         <td>${user.surname}</td>
         <td>${user.codice_fiscale}</td>
         <td><span class="icon-delete"><i class="fa fa-trash" onclick="removeTablePerson(${user.id})"></i></span></td>
-    </tr>`
+    </tr>`;
 }
