@@ -9,4 +9,4 @@ Un umile progetto che ampiamente usa bootstrap che cerca di attuare una scheda d
 
 ## Problemi
 
-- Non si possono aggiungere visite per pazienti che sono gia nel db se non hanno un campo visite. Nel'aggiunta del paziente viene creato in automatico un campo visite vuoto
+- Non si possono aggiungere visite per pazienti che sono gia nel db se non hanno un campo visite. Nell'aggiunta del paziente viene creato in automatico un campo visite vuoto
