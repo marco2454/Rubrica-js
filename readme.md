@@ -13,4 +13,4 @@ Un umile progetto che ampiamente usa bootstrap che cerca di attuare una scheda d
 
 ## Todo
 
-- 
+- aggiungere un bootbox dialog anche per la cancellazione delle visite
