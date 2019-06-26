@@ -290,7 +290,7 @@ function printTableVisits(visits, n) {
 
 function printFormeditVisit(visits, td) {
     trDaModidicare = td.parentNode;
-    console.log(trDaModidicare);
+    
     const formEditVisit = document.querySelector("#form-edit-visita");
     formEditVisit.innerHTML = '';
     formEditVisit.innerHTML += displayInfoModalVisits(visits);
