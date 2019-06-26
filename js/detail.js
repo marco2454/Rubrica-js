@@ -4,6 +4,7 @@ let visits = [];
 let lastVisitId = 0;
 let nRow = 0;
 let trDaModidicare;
+let idDaModificare;
 
 // GET USER BY ID
 async function getPersonDetail() {
@@ -160,10 +161,8 @@ async function editVisit(form, event) {
     event.preventDefault();
     const tableTbody = document.querySelector('#visits-table tbody');
 
-    let id = trDaModidicare.childNodes[1].innerText;
-
     let updatedVisit = createObjectFromForm(form);
-    visits[id-1] = updatedVisit;
+    visits[idDaModificare-1] = updatedVisit;
 
     updatedUser = {
         ...user,
@@ -290,7 +289,8 @@ function printTableVisits(visits, n) {
 
 function printFormeditVisit(visits, td) {
     trDaModidicare = td.parentNode;
-    
+    idDaModificare = trDaModidicare.childNodes[1].innerText;
+
     const formEditVisit = document.querySelector("#form-edit-visita");
     formEditVisit.innerHTML = '';
     formEditVisit.innerHTML += displayInfoModalVisits(visits);
@@ -299,16 +299,16 @@ function printFormeditVisit(visits, td) {
 function displayInfoModalVisits(visits) {
     return `<form onsubmit="return editVisit(this,event)" id="form-edit-visita">
                 <div class="form-group">
-                    <input name="id" type="hidden" value="${visits[0].id}">
+                    <input name="id" type="hidden" value="${visits[idDaModificare-1].id}">
                     <label for="date">Data</label>
                     <div>
-                            <input type="date" class="form-control mb-2 mr-sm-2" class="edit-modal" name="date" value="${visits[0].date}">
+                            <input type="date" class="form-control mb-2 mr-sm-2" class="edit-modal" name="date" value="${visits[idDaModificare-1].date}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="detail">Dettagli</label>
                     <div>
-                            <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal" name="details" value="${visits[0].details}">
+                            <input type="text" class="form-control mb-2 mr-sm-2" class="edit-modal" name="details" value="${visits[idDaModificare-1].details}">
                     </div>
                 </div>
                 <div class="form-group">
