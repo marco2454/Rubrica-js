@@ -9,7 +9,7 @@ Un umile progetto che ampiamente usa bootstrap che cerca di attuare una scheda d
 
 ## Problemi
 
-- 
+- non si possono aggiungere visite per pazienti che sonno gia nel db
 
 ## Todo
 
