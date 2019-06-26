@@ -201,9 +201,7 @@ async function removeVisit(td) {
     };
 
     user = await updateUserFromApi(updatedUser);
-    
-    // console.log(tr, id);
-    tr.remove();
+    // tr.remove();
 }
 
 //Stampa Informazioni
@@ -286,7 +284,7 @@ function displayInfoModal(user) {
 //Stampa tabella per le visite
 function printTableVisits(visits, n) {
     return `<tr id="row${n}">
-        <td class="visit-id">${n}</td>
+        <td class="visit-number">${n}</td>
         <td>${visits.date}</td>
         <td>${visits.details}</td>
         <td><span class="icon-edit"><i class="fas fa-edit" data-toggle="modal" data-target="#ModalEditVisita"></i></span></td>
