@@ -22,6 +22,7 @@ h1#h1-title {
 i#home {
     text-decoration: none;
     color: white;
+    margin-top: 5px
 }
 
 a {
@@ -30,6 +31,7 @@ a {
 
 #icon-edit {
     color: white;
+    margin-top: 5px;
 }
 
 .input-modal {
