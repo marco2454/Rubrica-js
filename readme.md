@@ -1,6 +1,6 @@
 # Scheda Pazienti
 
-Un umile progetto che ampiamente usa bootstrap che cerca di attuare una scheda di pazienti in un modo responsive.
+Un umile progetto che usa ampiamente bootstrap che cerca di attuare una scheda di pazienti in un modo responsive.
 
 ## Dipendenze
 
